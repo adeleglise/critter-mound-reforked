@@ -361,6 +361,15 @@ var ticksPerSecond=20,game,GameController=function()
 		this.achievements=ko.observableArray();
 		this.achievementCounts=[];
 		this.achievementsUnlocked=ko.observable(0);
+this.achievementBonus = ko.computed(function() {
+    var bonus = 1;
+    for(var i = 0; i < this.achievements().length; i++) {
+        if(this.achievements()[i].isUnlocked() && this.achievements()[i].value >= 100000) {
+            bonus *= 1.05; // 5% bonus for high-tier achievements
+        }
+    }
+    return bonus;
+}, this);
 		this.armyUpgrades=ko.observable(new ArmyUpgrades);
 		this.achievementCheck=10*ticksPerSecond;
 		this.saveCheck=60*ticksPerSecond;
@@ -2129,3 +2138,78 @@ $(document).ready(function()
 	}
 }
 );
+var PrestigeSystem = function() {
+    this.prestigePoints = ko.observable(0);
+    this.totalResets = ko.observable(0);
+    this.bonusMultiplier = ko.computed(function() {
+        return 1 + (this.prestigePoints() * 0.1); // 10% bonus per point
+    }, this);
+    
+    this.calculatePrestigePoints = function(generations, achievements) {
+        return Math.floor(Math.sqrt(generations * achievements));
+    };
+    
+    this.reset = function(game) {
+        var points = this.calculatePrestigePoints(game.generations(), game.achievementsUnlocked());
+        this.prestigePoints(this.prestigePoints() + points);
+        this.totalResets(this.totalResets() + 1);
+        
+        // Keep certain upgrades
+        var savedBoosts = game.maxBoosts();
+        var savedAchievements = game.achievements();
+        
+        // Reset game state
+        game = new GameController();
+        
+        // Restore kept upgrades
+        game.maxBoosts(savedBoosts);
+        game.achievements(savedAchievements);
+    };
+};
+var EventSystem = function() {
+    this.activeEvent = ko.observable(null);
+    this.eventRewards = ko.observableArray([]);
+    
+    this.events = [
+        {
+            id: 'seasonal_swarm',
+            name: 'Seasonal Swarm',
+            duration: 24 * 60 * 60, // 24 hours in seconds
+            bonusMultiplier: 2,
+            enemyModifier: 1.5
+        },
+        {
+            id: 'mutation_surge',
+            name: 'Mutation Surge',
+            duration: 12 * 60 * 60,
+            mutationChanceBonus: 50
+        }
+    ];
+    
+    this.startRandomEvent = function() {
+        if (!this.activeEvent()) {
+            var randomEvent = this.events[Math.floor(Math.random() * this.events.length)];
+            this.activeEvent(randomEvent);
+            setTimeout(() => this.activeEvent(null), randomEvent.duration * 1000);
+        }
+    };
+};
+function AutoAssignWorkers() {
+    this.enabled = ko.observable(false);
+    
+    this.optimize = function(game) {
+        if (!this.enabled()) return;
+        
+        // Automatically assign new workers based on production bottlenecks
+        var workers = game.femaleMound().concat(game.maleMound());
+        workers.forEach(worker => {
+            if (game.dirtPerSecondRaw() < game.grassPerSecondRaw()) {
+                game.Move('Worker', 'Mine', null, {});
+            } else if (game.carryPerSecondRaw() < Math.min(game.dirtPerSecondRaw(), game.grassPerSecondRaw())) {
+                game.Move('Worker', 'Carrier', null, {});
+            } else {
+                game.Move('Worker', 'Farm', null, {});
+            }
+        });
+    };
+}
