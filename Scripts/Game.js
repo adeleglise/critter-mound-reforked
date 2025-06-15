@@ -39,6 +39,38 @@ var ticksPerSecond=20,game,GameController=function()
 	function n()
 		{
 		this.generations=ko.observable(0);
+		// Prestige System
+		this.evolutionPoints=ko.observable(0);
+		this.totalEvolutions=ko.observable(0);
+		this.evolutionLevel=ko.observable(0);
+		this.evolutionBonuses=ko.observableArray();
+		this.canEvolve=ko.computed(function(){
+			return this.generations()>=50&&this.sodRaw()>=1000000
+		},this);
+		this.evolutionPointsGain=ko.computed(function(){
+			return Math.floor(Math.sqrt(this.generations())*Math.sqrt(this.sodRaw()/1000))
+		},this);
+		// New Resources
+		this.nectarRaw=ko.observable(0);
+		this.nectar=ko.computed(function(){
+			return SmartRound(this.nectarRaw())
+		},this);
+		this.silkRaw=ko.observable(0);
+		this.silk=ko.computed(function(){
+			return SmartRound(this.silkRaw())
+		},this);
+		this.chitinRaw=ko.observable(0);
+		this.chitin=ko.computed(function(){
+			return SmartRound(this.chitinRaw())
+		},this);
+		this.pollenRaw=ko.observable(0);
+		this.pollen=ko.computed(function(){
+			return SmartRound(this.pollenRaw())
+		},this);
+		// Research System
+		this.researchPoints=ko.observable(0);
+		this.researchTree=ko.observableArray();
+		this.unlockedResearch=ko.observableArray();
 		this.sorts=["score","base","bonus","vitality","strength","agility","bite","sting","mutations","mine","farm","carry","factory"];
 		this.armySorts=["score","vitality","strength","agility","bite","sting","level"];
 		this.femaleSort=ko.observable("score");
@@ -387,6 +419,19 @@ this.achievementBonus = ko.computed(function() {
 		this.nations.push(new Nation(15,0,"crickets","balanced",5,50,1,null,1));
 		this.nations.push(new Nation(16,0,"ants","balanced",1e3,2e3,4,15,2));
 		this.nations.push(new Nation(17,0,"grasshoppers","balanced",15e3,25e3,7,16,3));
+		// Initialize new systems
+		this.initializeResearch();
+		// Apply evolution bonuses to starting resources
+		var startingSodBonus=this.getEvolutionBonus('starting_sod');
+		if(startingSodBonus>0)
+			{
+			this.sodRaw(startingSodBonus*1000)
+		}
+		// Initialize research if not loaded from save
+		if(this.researchTree().length===0)
+			{
+			this.initializeResearch()
+		}
 		this.nations.push(new Nation(0,4,"gnats","high numbers",50,100,1,15,1));
 		this.nations.push(new Nation(2,4,"chiggers","high numbers",2e3,3e3,4,0,2));
 		this.nations.push(new Nation(1,4,"ladybugs","high numbers",25e3,5e4,7,2,3));
@@ -669,6 +714,9 @@ this.achievementBonus = ko.computed(function() {
 		this.factoryDirtPerSecond(SmartRound(this.carryMineDirtPerSecond()-this.factorySodPerSecond()));
 		this.factoryGrassPerSecond(SmartRound(this.carryFarmGrassPerSecond()-this.factorySodPerSecond()));
 		this.sodPerSecondForBreeding(SmartRound(this.factorySodPerSecond()*(this.sodDedicatedToBreeding()/100)));
+		// Generate research points and new resources
+		this.generateResearchPoints();
+		this.generateNewResources();
 		this.AnimateWorkers()
 	}
 	,n.prototype.BreedCheck=function(n)
@@ -1312,16 +1360,193 @@ this.achievementBonus = ko.computed(function() {
 		var f=n<t?n-StatVariance(n):t-StatVariance(t),e=n>t?n+StatVariance(n):t+StatVariance(t),u=RandomInRange(f,e);
 		return u<i&&(u=i),u>r&&(u=r),u
 	}
-	,n.prototype.DefaultCritter=function(n,t,i)
+	,n.prototype.DefaultCritter=function(n,t,i,r)
 		{
 		this.achievementCounts[6].Update(this.achievementCounts[6].value+1);
-		var r=new Critter(i,this.achievementCounts[6].value,n);
-		return r.job=t,r
+		var s=new Critter(i,this.achievementCounts[6].value,n,r||this.determineOffspringSpecies());
+		return s.job=t,s
+	}
+	,n.prototype.determineOffspringSpecies=function()
+		{
+		var motherSpecies=this.mother().species||0;
+		var fatherSpecies=this.father().species||0;
+		if(motherSpecies===fatherSpecies)
+			{
+			if(Math.random()<0.8) return motherSpecies
+		}
+		var unlockedSpecies=this.getUnlockedSpecies();
+		return unlockedSpecies[Math.floor(Math.random()*unlockedSpecies.length)]
+	}
+	,n.prototype.getUnlockedSpecies=function()
+		{
+		var unlocked=[0];
+		if(this.generations()>=5||this.hasEvolutionBonus('beetle_unlock')) unlocked.push(1);
+		if(this.generations()>=10||this.hasEvolutionBonus('spider_unlock')) unlocked.push(2);
+		if(this.generations()>=15||this.hasEvolutionBonus('mantis_unlock')) unlocked.push(3);
+		if(this.generations()>=20||this.hasEvolutionBonus('butterfly_unlock')) unlocked.push(4);
+		if(this.generations()>=25||this.hasEvolutionBonus('hornet_unlock')) unlocked.push(5);
+		return unlocked
+	}
+	,n.prototype.hasEvolutionBonus=function(bonusType)
+		{
+		return this.evolutionBonuses().some(function(bonus){return bonus.type===bonusType})
+	}
+	,n.prototype.getEvolutionBonus=function(bonusType)
+		{
+		var bonus=this.evolutionBonuses().find(function(b){return b.type===bonusType});
+		return bonus?bonus.value:0
+	}
+	,n.prototype.performEvolution=function()
+		{
+		if(!this.canEvolve()) return;
+		var pointsGained=this.evolutionPointsGain();
+		this.evolutionPoints(this.evolutionPoints()+pointsGained);
+		this.totalEvolutions(this.totalEvolutions()+1);
+		this.evolutionLevel(this.evolutionLevel()+1);
+		// Reset game state but keep evolution bonuses
+		this.generations(0);
+		this.sodRaw(0);
+		this.dirtRaw(0);
+		this.grassRaw(0);
+		this.factoryDirtRaw(0);
+		this.factoryGrassRaw(0);
+		// Reset mounds
+		this.femaleMound.removeAll();
+		this.maleMound.removeAll();
+		this.mineMound.removeAll();
+		this.farmMound.removeAll();
+		this.carrierMound.removeAll();
+		this.factoryMound.removeAll();
+		this.armyMound.removeAll();
+		// Reset to default critters
+		this.mother(this.DefaultCritter(0,0,1));
+		this.father(this.DefaultCritter(1,0,1));
+		// Notify player
+		$('.tabcontents').notify('Evolution Complete! Gained '+pointsGained+' Evolution Points','success')
+	}
+	,n.prototype.purchaseEvolutionBonus=function(bonusType,cost)
+		{
+		if(this.evolutionPoints()<cost) return false;
+		this.evolutionPoints(this.evolutionPoints()-cost);
+		var existingBonus=this.evolutionBonuses().find(function(b){return b.type===bonusType});
+		if(existingBonus)
+			{
+			existingBonus.value++
+		}
+		else
+			{
+			this.evolutionBonuses.push({type:bonusType,value:1,name:this.getEvolutionBonusName(bonusType)})
+		}
+		return true
+	}
+	,n.prototype.getEvolutionBonusName=function(bonusType)
+		{
+		var names={
+			'trait_multiplier':'Trait Multiplier',
+			'breeding_speed':'Breeding Speed',
+			'starting_sod':'Starting Sod',
+			'beetle_unlock':'Beetle Species',
+			'spider_unlock':'Spider Species',
+			'mantis_unlock':'Mantis Species',
+			'butterfly_unlock':'Butterfly Species',
+			'hornet_unlock':'Hornet Species',
+			'production_bonus':'Production Bonus',
+			'combat_bonus':'Combat Bonus'
+		};
+		return names[bonusType]||bonusType
+	}
+	// Research System
+	,n.prototype.initializeResearch=function()
+		{
+		var research=[
+			{id:'biology1',name:'Basic Biology',desc:'Improves mutation rates by 25%',cost:10,category:'biology',prereq:null,unlocked:true},
+			{id:'biology2',name:'Advanced Genetics',desc:'Unlocks genetic manipulation',cost:50,category:'biology',prereq:'biology1',unlocked:false},
+			{id:'engineering1',name:'Basic Tools',desc:'Improves production efficiency by 20%',cost:15,category:'engineering',prereq:null,unlocked:true},
+			{id:'engineering2',name:'Automation',desc:'Reduces worker requirements',cost:75,category:'engineering',prereq:'engineering1',unlocked:false},
+			{id:'military1',name:'Combat Training',desc:'Improves soldier effectiveness by 15%',cost:20,category:'military',prereq:null,unlocked:true},
+			{id:'military2',name:'Advanced Tactics',desc:'Unlocks new combat abilities',cost:60,category:'military',prereq:'military1',unlocked:false},
+			{id:'genetics1',name:'Trait Enhancement',desc:'Allows trait value increases',cost:100,category:'genetics',prereq:'biology2',unlocked:false}
+		];
+		this.researchTree(research)
+	}
+	,n.prototype.canResearch=function(researchId)
+		{
+		var research=this.researchTree().find(function(r){return r.id===researchId});
+		if(!research||this.isResearched(researchId)) return false;
+		if(!research.unlocked) return false;
+		if(research.prereq&&!this.isResearched(research.prereq)) return false;
+		return this.researchPoints()>=research.cost
+	}
+	,n.prototype.isResearched=function(researchId)
+		{
+		return this.unlockedResearch().indexOf(researchId)!==-1
+	}
+	,n.prototype.purchaseResearch=function(researchId)
+		{
+		if(!this.canResearch(researchId)) return false;
+		var research=this.researchTree().find(function(r){return r.id===researchId});
+		this.researchPoints(this.researchPoints()-research.cost);
+		this.unlockedResearch.push(researchId);
+		// Unlock dependent research
+		this.researchTree().forEach(function(r){
+			if(r.prereq===researchId) r.unlocked=true
+		});
+		$('.tabcontents').notify('Research Complete: '+research.name,'success');
+		return true
+	}
+	,n.prototype.getResearchBonus=function(category)
+		{
+		var bonus=1;
+		if(category==='production'&&this.isResearched('engineering1')) bonus*=1.2;
+		if(category==='combat'&&this.isResearched('military1')) bonus*=1.15;
+		if(category==='mutation'&&this.isResearched('biology1')) bonus*=1.25;
+		return bonus
+	}
+	,n.prototype.generateResearchPoints=function()
+		{
+		// Generate research points based on sod production and generations
+		var pointsPerTick=Math.floor((this.factorySodPerSecond()+this.generations())/100);
+		if(pointsPerTick>0)
+			{
+			this.researchPoints(this.researchPoints()+pointsPerTick)
+		}
+	}
+	,n.prototype.generateNewResources=function()
+		{
+		// Generate nectar from butterflies
+		var nectarRate=0;
+		this.femaleMound().concat(this.maleMound()).forEach(function(critter){
+			if(critter.species===4) nectarRate+=critter.traits[3].value*0.1
+		});
+		this.farmMound().forEach(function(critter){
+			if(critter.species===4) nectarRate+=critter.grassPerSecond*0.2
+		});
+		if(nectarRate>0) this.nectarRaw(this.nectarRaw()+nectarRate/ticksPerSecond);
+		
+		// Generate silk from spiders
+		var silkRate=0;
+		this.carrierMound().forEach(function(critter){
+			if(critter.species===2) silkRate+=critter.carryPerSecond*0.15
+		});
+		if(silkRate>0) this.silkRaw(this.silkRaw()+silkRate/ticksPerSecond);
+		
+		// Generate chitin from combat (battles)
+		if(this.inBattle()&&Math.random()<0.1)
+			{
+			this.chitinRaw(this.chitinRaw()+Math.random()*5)
+		}
+		
+		// Generate pollen from farms with research
+		if(this.isResearched('biology1'))
+			{
+			var pollenRate=this.grassPerSecondRaw()*0.05;
+			if(pollenRate>0) this.pollenRaw(this.pollenRaw()+pollenRate/ticksPerSecond)
+		}
 	}
 	,n.prototype.Save=function()
 		{
 		var n=new GameSave,t;
-		return n.version="1.0",n.dirtRaw=this.dirtRaw(),n.grassRaw=this.grassRaw(),n.sodRaw=this.sodRaw(),n.factoryDirtRaw=this.factoryDirtRaw(),n.factoryGrassRaw=this.factoryGrassRaw(),n.generations=this.generations(),n.mother=this.mother(),n.father=this.father(),n.princess=this.princess(),n.prince=this.prince(),n.sodDedicatedToBreeding=this.sodDedicatedToBreeding(),n.isHeirsUnlocked=this.isHeirsUnlocked(),n.femaleMound=this.femaleMound(),n.maleMound=this.maleMound(),n.princessMound=this.princessMound(),n.princeMound=this.princeMound(),n.mineMound=this.mineMound(),n.farmMound=this.farmMound(),n.carrierMound=this.carrierMound(),n.factoryMound=this.factoryMound(),n.armyMound=this.armyMound(),n.maxFemaleMoundSize=this.maxFemaleMoundSize(),n.maxMaleMoundSize=this.maxMaleMoundSize(),n.maxPrincessMoundSize=this.maxPrincessMoundSize(),n.maxPrinceMoundSize=this.maxPrinceMoundSize(),n.maxMineMoundSize=this.maxMineMoundSize(),n.bonusMinePercent=this.bonusMinePercent(),n.bonusFarmPercent=this.bonusFarmPercent(),n.bonusCarrierPercent=this.bonusCarrierPercent(),n.bonusFactoryPercent=this.bonusFactoryPercent(),n.maxFarmMoundSize=this.maxFarmMoundSize(),n.maxCarrierMoundSize=this.maxCarrierMoundSize(),n.maxFactoryMoundSize=this.maxFactoryMoundSize(),n.maxArmyMoundSize=this.maxArmyMoundSize(),n.femaleSort=this.femaleSort(),n.maleSort=this.maleSort(),n.princessSort=this.princessSort(),n.princeSort=this.princeSort(),n.armySort=this.armySort(),n.map=this.map(),n.tiles=this.map().tiles(),n.atWar=this.atWar(),n.nations=this.nations(),n.nation=this.nation(),n.achievements=this.achievements(),n.achievementCounts=this.achievementCounts,n.achievementsUnlocked=this.achievementsUnlocked(),n.battleTurnLength=this.battleTurnLength(),n.boosts=this.boosts(),n.maxBoosts=this.maxBoosts(),n.armyUpgrades=this.armyUpgrades(),t=$.base64.encode(ko.toJSON(n)),localStorage.setItem("game2",t),$(".tabcontents").notify("Game Saved","info"),this.saveCheck=60*ticksPerSecond,t
+		return n.version="1.1",n.dirtRaw=this.dirtRaw(),n.grassRaw=this.grassRaw(),n.sodRaw=this.sodRaw(),n.factoryDirtRaw=this.factoryDirtRaw(),n.factoryGrassRaw=this.factoryGrassRaw(),n.generations=this.generations(),n.evolutionPoints=this.evolutionPoints(),n.totalEvolutions=this.totalEvolutions(),n.evolutionLevel=this.evolutionLevel(),n.evolutionBonuses=this.evolutionBonuses(),n.nectarRaw=this.nectarRaw(),n.silkRaw=this.silkRaw(),n.chitinRaw=this.chitinRaw(),n.pollenRaw=this.pollenRaw(),n.researchPoints=this.researchPoints(),n.unlockedResearch=this.unlockedResearch(),n.mother=this.mother(),n.father=this.father(),n.princess=this.princess(),n.prince=this.prince(),n.sodDedicatedToBreeding=this.sodDedicatedToBreeding(),n.isHeirsUnlocked=this.isHeirsUnlocked(),n.femaleMound=this.femaleMound(),n.maleMound=this.maleMound(),n.princessMound=this.princessMound(),n.princeMound=this.princeMound(),n.mineMound=this.mineMound(),n.farmMound=this.farmMound(),n.carrierMound=this.carrierMound(),n.factoryMound=this.factoryMound(),n.armyMound=this.armyMound(),n.maxFemaleMoundSize=this.maxFemaleMoundSize(),n.maxMaleMoundSize=this.maxMaleMoundSize(),n.maxPrincessMoundSize=this.maxPrincessMoundSize(),n.maxPrinceMoundSize=this.maxPrinceMoundSize(),n.maxMineMoundSize=this.maxMineMoundSize(),n.bonusMinePercent=this.bonusMinePercent(),n.bonusFarmPercent=this.bonusFarmPercent(),n.bonusCarrierPercent=this.bonusCarrierPercent(),n.bonusFactoryPercent=this.bonusFactoryPercent(),n.maxFarmMoundSize=this.maxFarmMoundSize(),n.maxCarrierMoundSize=this.maxCarrierMoundSize(),n.maxFactoryMoundSize=this.maxFactoryMoundSize(),n.maxArmyMoundSize=this.maxArmyMoundSize(),n.femaleSort=this.femaleSort(),n.maleSort=this.maleSort(),n.princessSort=this.princessSort(),n.princeSort=this.princeSort(),n.armySort=this.armySort(),n.map=this.map(),n.tiles=this.map().tiles(),n.atWar=this.atWar(),n.nations=this.nations(),n.nation=this.nation(),n.achievements=this.achievements(),n.achievementCounts=this.achievementCounts,n.achievementsUnlocked=this.achievementsUnlocked(),n.battleTurnLength=this.battleTurnLength(),n.boosts=this.boosts(),n.maxBoosts=this.maxBoosts(),n.armyUpgrades=this.armyUpgrades(),t=$.base64.encode(ko.toJSON(n)),localStorage.setItem("game2",t),$(".tabcontents").notify("Game Saved","info"),this.saveCheck=60*ticksPerSecond,t
 	}
 	,n.prototype.Load=function(n)
 		{
@@ -1330,7 +1555,7 @@ this.achievementBonus = ko.computed(function() {
 			{
 			if(n!==null||localStorage.getItem("game2")!==null)
 				{
-				if(t=n!=null?JSON.parse($.base64.decode(n)):JSON.parse($.base64.decode(localStorage.getItem("game2"))),this.dirtRaw(t.dirtRaw),this.grassRaw(t.grassRaw),this.sodRaw(t.sodRaw),this.factoryDirtRaw(t.factoryDirtRaw),this.factoryGrassRaw(t.factoryGrassRaw),this.generations(t.generations),this.sodDedicatedToBreeding(t.sodDedicatedToBreeding),this.isHeirsUnlocked(t.isHeirsUnlocked),this.maxFemaleMoundSize(t.maxFemaleMoundSize),this.maxMaleMoundSize(t.maxMaleMoundSize),this.maxPrincessMoundSize(t.maxPrincessMoundSize),this.maxPrinceMoundSize(t.maxPrinceMoundSize),this.maxMineMoundSize(t.maxMineMoundSize),this.maxFarmMoundSize(t.maxFarmMoundSize),this.maxCarrierMoundSize(t.maxCarrierMoundSize),this.maxFactoryMoundSize(t.maxFactoryMoundSize),this.maxArmyMoundSize(t.maxArmyMoundSize),this.bonusMinePercent(t.bonusMinePercent),this.bonusCarrierPercent(t.bonusCarrierPercent),this.bonusFarmPercent(t.bonusFarmPercent),this.bonusFactoryPercent(t.bonusFactoryPercent),this.femaleSort(t.femaleSort),this.maleSort(t.maleSort),this.princeSort(t.princeSort),this.princessSort(t.princessSort),this.armySort(t.armySort),this.atWar(t.atWar),this.achievementsUnlocked(t.achievementsUnlocked),this.battleTurnLength(t.battleTurnLength!=undefined?t.battleTurnLength:ticksPerSecond/2),t.boosts!=undefined&&(this.boosts(t.boosts),this.maxBoosts(t.maxBoosts)),t.nations!=undefined)for(this.nations=ko.observableArray(),i=0;
+				if(t=n!=null?JSON.parse($.base64.decode(n)):JSON.parse($.base64.decode(localStorage.getItem("game2"))),this.dirtRaw(t.dirtRaw),this.grassRaw(t.grassRaw),this.sodRaw(t.sodRaw),this.factoryDirtRaw(t.factoryDirtRaw),this.factoryGrassRaw(t.factoryGrassRaw),this.generations(t.generations),t.evolutionPoints!=undefined&&(this.evolutionPoints(t.evolutionPoints),this.totalEvolutions(t.totalEvolutions),this.evolutionLevel(t.evolutionLevel),this.evolutionBonuses(t.evolutionBonuses||[])),t.nectarRaw!=undefined&&(this.nectarRaw(t.nectarRaw),this.silkRaw(t.silkRaw),this.chitinRaw(t.chitinRaw),this.pollenRaw(t.pollenRaw)),t.researchPoints!=undefined&&(this.researchPoints(t.researchPoints),this.unlockedResearch(t.unlockedResearch||[])),this.sodDedicatedToBreeding(t.sodDedicatedToBreeding),this.isHeirsUnlocked(t.isHeirsUnlocked),this.maxFemaleMoundSize(t.maxFemaleMoundSize),this.maxMaleMoundSize(t.maxMaleMoundSize),this.maxPrincessMoundSize(t.maxPrincessMoundSize),this.maxPrinceMoundSize(t.maxPrinceMoundSize),this.maxMineMoundSize(t.maxMineMoundSize),this.maxFarmMoundSize(t.maxFarmMoundSize),this.maxCarrierMoundSize(t.maxCarrierMoundSize),this.maxFactoryMoundSize(t.maxFactoryMoundSize),this.maxArmyMoundSize(t.maxArmyMoundSize),this.bonusMinePercent(t.bonusMinePercent),this.bonusCarrierPercent(t.bonusCarrierPercent),this.bonusFarmPercent(t.bonusFarmPercent),this.bonusFactoryPercent(t.bonusFactoryPercent),this.femaleSort(t.femaleSort),this.maleSort(t.maleSort),this.princeSort(t.princeSort),this.princessSort(t.princessSort),this.armySort(t.armySort),this.atWar(t.atWar),this.achievementsUnlocked(t.achievementsUnlocked),this.battleTurnLength(t.battleTurnLength!=undefined?t.battleTurnLength:ticksPerSecond/2),t.boosts!=undefined&&(this.boosts(t.boosts),this.maxBoosts(t.maxBoosts)),t.nations!=undefined)for(this.nations=ko.observableArray(),i=0;
 				i<t.nations.length;
 				i++)u=new Nation(t.nations[i].enemy,t.nations[i].custom,t.nations[i].name,t.nations[i].desc,t.nations[i].lowBaseValue,t.nations[i].highBaseValue,t.nations[i].armySizeBase,t.nations[i].requiredToUnlock,t.nations[i].treasurePoints),u.mineFound(t.nations[i].mineFound),u.farmFound(t.nations[i].farmFound),u.carryFound(t.nations[i].carryFound),u.factoryFound(t.nations[i].factoryFound),u.exploreFound(t.nations[i].exploreFound),u.fortFound(t.nations[i].fortFound!=undefined?t.nations[i].fortFound:!1),u.geneFound(t.nations[i].geneFound),u.boostFound(t.nations[i].boostFound),u.treasuresFound(t.nations[i].treasuresFound),u.mapComplete(t.nations[i].mapComplete),u.isDefeated(t.nations[i].isDefeated),u.isUnlocked(t.nations[i].isUnlocked),this.nations.push(u);
 				if(t.map!=undefined)for(this.map(new GameMap),this.map().mound=t.map.mound,this.map().enemy=t.map.enemy,this.map().mine=t.map.mine,this.map().farm=t.map.farm,this.map().carry=t.map.carry,this.map().factory=t.map.factory,this.map().explore=t.map.explore,this.map().boost=t.map.boost,this.map().gene=t.map.gene,this.map().fort=t.map.fort,this.map().treasures=t.map.treasures,this.map().tileCount(t.map.tileCount),this.map().tilesCleared(t.map.tilesCleared),this.map().canExplore(t.map.canExplore),this.map().highestDanger=t.map.highestDanger!=undefined?t.map.highestDanger:1,i=0;
@@ -1407,7 +1632,7 @@ this.achievementBonus = ko.computed(function() {
 }
 (),Critter=function()
 	{
-	function n(n,t,i)
+	function n(n,t,i,r)
 		{
 		this.id=-1;
 		this.score=0;
@@ -1418,6 +1643,8 @@ this.achievementBonus = ko.computed(function() {
 		this.job=1;
 		this.traits=[];
 		this.totalMutations=0;
+		this.species=r||0; // 0=ant, 1=beetle, 2=spider, 3=mantis, 4=butterfly, 5=hornet
+		this.speciesName=this.getSpeciesName();
 		this.currentHealth=ko.observable(0);
 		this.healthPercentage=ko.computed(function()
 			{
@@ -1437,17 +1664,54 @@ this.achievementBonus = ko.computed(function() {
 		this.generation=n;
 		this.id=t;
 		this.gender=i;
-		this.traits.push(new Trait(0,"vitality",5));
-		this.traits.push(new Trait(1,"strength",5));
-		this.traits.push(new Trait(2,"agility",5));
-		this.traits.push(new Trait(3,"bite",5));
-		this.traits.push(new Trait(4,"sting",5))
+		// Initialize traits based on species
+		this.initializeTraits()
 	}
-	return n.prototype.Load=function(n)
+	return n.prototype.getSpeciesName=function()
+		{
+		var speciesNames=["Ant","Beetle","Spider","Mantis","Butterfly","Hornet"];
+		return speciesNames[this.species]||"Ant"
+	}
+	,n.prototype.initializeTraits=function()
+		{
+		var baseTraits=this.getSpeciesBaseTraits();
+		this.traits.push(new Trait(0,"vitality",baseTraits.vitality));
+		this.traits.push(new Trait(1,"strength",baseTraits.strength));
+		this.traits.push(new Trait(2,"agility",baseTraits.agility));
+		this.traits.push(new Trait(3,"bite",baseTraits.bite));
+		this.traits.push(new Trait(4,"sting",baseTraits.sting))
+	}
+	,n.prototype.getSpeciesBaseTraits=function()
+		{
+		switch(this.species)
+			{
+			case 1: return {vitality:8,strength:6,agility:3,bite:4,sting:5};
+			case 2: return {vitality:3,strength:4,agility:8,bite:5,sting:7};
+			case 3: return {vitality:5,strength:7,agility:6,bite:8,sting:4};
+			case 4: return {vitality:4,strength:3,agility:8,bite:6,sting:3};
+			case 5: return {vitality:6,strength:6,agility:6,bite:6,sting:6};
+			default: return {vitality:5,strength:5,agility:5,bite:5,sting:5}
+		}
+	}
+	,n.prototype.getSpeciesBonus=function(traitType)
+		{
+		switch(this.species)
+			{
+			case 1: return traitType===0?1.5:1;
+			case 2: return traitType===1?1.3:1;
+			case 3: return (traitType===3||traitType===4)?1.2:1;
+			case 4: return traitType===3?1.4:1;
+			case 5: return traitType===2?1.2:1;
+			default: return 1
+		}
+	}
+	,n.prototype.Load=function(n)
 		{
 		this.isSelected=ko.observable(!1);
 		this.experience=ko.observable(n.experience);
 		this.isLocked=ko.observable(n.isLocked);
+		this.species=n.species||0;
+		this.speciesName=this.getSpeciesName();
 		this.currentHealth=ko.observable(n.currentHealth);
 		this.healthPercentage=ko.computed(function()
 			{
@@ -1504,15 +1768,15 @@ this.achievementBonus = ko.computed(function() {
 		this.traits[3].stats=[];
 		this.strengthBonus=SmartRound(this.traits[1].value/2);
 		this.traits[3].stats.push(new NameValue("Strength Bonus",this.strengthBonus.toString()));
-		this.grassPerSecond=SmartRound(60/(this.actionTime/ticksPerSecond)*this.traits[3].value/60);
+		this.grassPerSecond=SmartRound(60/(this.actionTime/ticksPerSecond)*this.traits[3].value*this.getSpeciesBonus(3)/60);
 		this.traits[3].stats.push(new NameValue("Farm Production",this.grassPerSecond+" per sec."));
-		this.traits[3].trueValue=SmartRound(this.traits[3].value+this.strengthBonus);
+		this.traits[3].trueValue=SmartRound((this.traits[3].value+this.strengthBonus)*this.getSpeciesBonus(3));
 		this.traits[4].stats=[];
 		this.agilityBonus=SmartRound(this.traits[2].value/2);
 		this.traits[4].stats.push(new NameValue("Agility Bonus",this.agilityBonus.toString()));
-		this.dirtPerSecond=SmartRound(60/(this.actionTime/ticksPerSecond)*this.traits[4].value/60);
+		this.dirtPerSecond=SmartRound(60/(this.actionTime/ticksPerSecond)*this.traits[4].value*this.getSpeciesBonus(4)/60);
 		this.traits[4].stats.push(new NameValue("Mine Production",this.dirtPerSecond+" per sec."));
-		this.traits[4].trueValue=SmartRound(this.traits[4].value+this.agilityBonus)
+		this.traits[4].trueValue=SmartRound((this.traits[4].value+this.agilityBonus)*this.getSpeciesBonus(4))
 	}
 	,n
 }
