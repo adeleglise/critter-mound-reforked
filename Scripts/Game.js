@@ -421,17 +421,8 @@ this.achievementBonus = ko.computed(function() {
 		this.nations.push(new Nation(17,0,"grasshoppers","balanced",15e3,25e3,7,16,3));
 		// Initialize new systems
 		this.initializeResearch();
-		// Apply evolution bonuses to starting resources
-		var startingSodBonus=this.getEvolutionBonus('starting_sod');
-		if(startingSodBonus>0)
-			{
-			this.sodRaw(startingSodBonus*1000)
-		}
-		// Initialize research if not loaded from save
-		if(this.researchTree().length===0)
-			{
-			this.initializeResearch()
-		}
+		// Initialize research
+		this.initializeResearch()
 		this.nations.push(new Nation(0,4,"gnats","high numbers",50,100,1,15,1));
 		this.nations.push(new Nation(2,4,"chiggers","high numbers",2e3,3e3,4,0,2));
 		this.nations.push(new Nation(1,4,"ladybugs","high numbers",25e3,5e4,7,2,3));
@@ -716,7 +707,7 @@ this.achievementBonus = ko.computed(function() {
 		this.sodPerSecondForBreeding(SmartRound(this.factorySodPerSecond()*(this.sodDedicatedToBreeding()/100)));
 		// Generate research points and new resources
 		this.generateResearchPoints();
-		this.generateNewResources();
+		// this.generateNewResources(); // Disabled for stability
 		this.AnimateWorkers()
 	}
 	,n.prototype.BreedCheck=function(n)
@@ -1363,19 +1354,13 @@ this.achievementBonus = ko.computed(function() {
 	,n.prototype.DefaultCritter=function(n,t,i,r)
 		{
 		this.achievementCounts[6].Update(this.achievementCounts[6].value+1);
-		var s=new Critter(i,this.achievementCounts[6].value,n,r||this.determineOffspringSpecies());
+		var s=new Critter(i,this.achievementCounts[6].value,n,0); // Use default ant species for now
 		return s.job=t,s
 	}
 	,n.prototype.determineOffspringSpecies=function()
 		{
-		var motherSpecies=this.mother().species||0;
-		var fatherSpecies=this.father().species||0;
-		if(motherSpecies===fatherSpecies)
-			{
-			if(Math.random()<0.8) return motherSpecies
-		}
-		var unlockedSpecies=this.getUnlockedSpecies();
-		return unlockedSpecies[Math.floor(Math.random()*unlockedSpecies.length)]
+		// Use basic species for stability
+		return 0 // Always return Ant species for now
 	}
 	,n.prototype.getUnlockedSpecies=function()
 		{
@@ -1515,6 +1500,7 @@ this.achievementBonus = ko.computed(function() {
 		{
 		// Generate nectar from butterflies
 		var nectarRate=0;
+		var self=this;
 		this.femaleMound().concat(this.maleMound()).forEach(function(critter){
 			if(critter.species===4) nectarRate+=critter.traits[3].value*0.1
 		});
@@ -1644,7 +1630,7 @@ this.achievementBonus = ko.computed(function() {
 		this.traits=[];
 		this.totalMutations=0;
 		this.species=r||0; // 0=ant, 1=beetle, 2=spider, 3=mantis, 4=butterfly, 5=hornet
-		this.speciesName=this.getSpeciesName();
+		this.speciesName="Ant"; // Will be set properly after initialization
 		this.currentHealth=ko.observable(0);
 		this.healthPercentage=ko.computed(function()
 			{
@@ -1665,7 +1651,10 @@ this.achievementBonus = ko.computed(function() {
 		this.id=t;
 		this.gender=i;
 		// Initialize traits based on species
-		this.initializeTraits()
+		this.initializeTraits();
+		// Set species name
+		var speciesNames=["Ant","Beetle","Spider","Mantis","Butterfly","Hornet"];
+		this.speciesName=speciesNames[this.species]||"Ant"
 	}
 	return n.prototype.getSpeciesName=function()
 		{
@@ -1711,7 +1700,8 @@ this.achievementBonus = ko.computed(function() {
 		this.experience=ko.observable(n.experience);
 		this.isLocked=ko.observable(n.isLocked);
 		this.species=n.species||0;
-		this.speciesName=this.getSpeciesName();
+		var speciesNames=["Ant","Beetle","Spider","Mantis","Butterfly","Hornet"];
+		this.speciesName=speciesNames[this.species]||"Ant";
 		this.currentHealth=ko.observable(n.currentHealth);
 		this.healthPercentage=ko.computed(function()
 			{
