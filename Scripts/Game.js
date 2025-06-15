@@ -1354,7 +1354,7 @@ this.achievementBonus = ko.computed(function() {
 	,n.prototype.DefaultCritter=function(n,t,i,r)
 		{
 		this.achievementCounts[6].Update(this.achievementCounts[6].value+1);
-		var s=new Critter(i,this.achievementCounts[6].value,n,0); // Use default ant species for now
+		var s=new Critter(i,this.achievementCounts[6].value,n,r||0); // generation, id, gender, species
 		return s.job=t,s
 	}
 	,n.prototype.determineOffspringSpecies=function()
@@ -1567,33 +1567,33 @@ this.achievementBonus = ko.computed(function() {
 					i++)h=new AchievementCount(t.achievementCounts[i].type),h.value=t.achievementCounts[i].value,this.achievementCounts.push(h);
 					while(this.achievementCounts.length<23)this.achievementCounts.push(new AchievementCount(i))
 				}
-				for(r=new Critter(t.mother.generation,t.mother.id,t.mother.gender),r.Load(t.mother),this.mother(r),r=new Critter(t.father.generation,t.father.id,t.father.gender),r.Load(t.father),this.father(r),r=new Critter(t.princess.generation,t.princess.id,t.princess.gender),r.Load(t.princess),this.princess(r),r=new Critter(t.prince.generation,t.prince.id,t.prince.gender),r.Load(t.prince),this.prince(r),this.femaleMound.removeAll(),i=0;
+				for(r=new Critter(t.mother.generation,t.mother.id,t.mother.gender,t.mother.species),r.Load(t.mother),this.mother(r),r=new Critter(t.father.generation,t.father.id,t.father.gender,t.father.species),r.Load(t.father),this.father(r),r=new Critter(t.princess.generation,t.princess.id,t.princess.gender,t.princess.species),r.Load(t.princess),this.princess(r),r=new Critter(t.prince.generation,t.prince.id,t.prince.gender,t.prince.species),r.Load(t.prince),this.prince(r),this.femaleMound.removeAll(),i=0;
 				i<t.femaleMound.length;
-				i++)r=new Critter(t.femaleMound[i].generation,t.femaleMound[i].id,t.femaleMound[i].gender),r.Load(t.femaleMound[i]),this.femaleMound.push(r);
+				i++)r=new Critter(t.femaleMound[i].generation,t.femaleMound[i].id,t.femaleMound[i].gender,t.femaleMound[i].species),r.Load(t.femaleMound[i]),this.femaleMound.push(r);
 				for(this.maleMound.removeAll(),i=0;
 				i<t.maleMound.length;
-				i++)r=new Critter(t.maleMound[i].generation,t.maleMound[i].id,t.maleMound[i].gender),r.Load(t.maleMound[i]),this.maleMound.push(r);
+				i++)r=new Critter(t.maleMound[i].generation,t.maleMound[i].id,t.maleMound[i].gender,t.maleMound[i].species),r.Load(t.maleMound[i]),this.maleMound.push(r);
 				for(this.princessMound.removeAll(),i=0;
 				i<t.princessMound.length;
-				i++)r=new Critter(t.princessMound[i].generation,t.princessMound[i].id,t.princessMound[i].gender),r.Load(t.princessMound[i]),this.princessMound.push(r);
+				i++)r=new Critter(t.princessMound[i].generation,t.princessMound[i].id,t.princessMound[i].gender,t.princessMound[i].species),r.Load(t.princessMound[i]),this.princessMound.push(r);
 				for(this.princeMound.removeAll(),i=0;
 				i<t.princeMound.length;
-				i++)r=new Critter(t.princeMound[i].generation,t.princeMound[i].id,t.princeMound[i].gender),r.Load(t.princeMound[i]),this.princeMound.push(r);
+				i++)r=new Critter(t.princeMound[i].generation,t.princeMound[i].id,t.princeMound[i].gender,t.princeMound[i].species),r.Load(t.princeMound[i]),this.princeMound.push(r);
 				for(this.mineMound.removeAll(),i=0;
 				i<t.mineMound.length;
-				i++)r=new Critter(t.mineMound[i].generation,t.mineMound[i].id,t.mineMound[i].gender),r.Load(t.mineMound[i]),this.mineMound.push(r);
+				i++)r=new Critter(t.mineMound[i].generation,t.mineMound[i].id,t.mineMound[i].gender,t.mineMound[i].species),r.Load(t.mineMound[i]),this.mineMound.push(r);
 				for(this.farmMound.removeAll(),i=0;
 				i<t.farmMound.length;
-				i++)r=new Critter(t.farmMound[i].generation,t.farmMound[i].id,t.farmMound[i].gender),r.Load(t.farmMound[i]),this.farmMound.push(r);
+				i++)r=new Critter(t.farmMound[i].generation,t.farmMound[i].id,t.farmMound[i].gender,t.farmMound[i].species),r.Load(t.farmMound[i]),this.farmMound.push(r);
 				for(this.carrierMound.removeAll(),i=0;
 				i<t.carrierMound.length;
-				i++)r=new Critter(t.carrierMound[i].generation,t.carrierMound[i].id,t.carrierMound[i].gender),r.Load(t.carrierMound[i]),this.carrierMound.push(r);
+				i++)r=new Critter(t.carrierMound[i].generation,t.carrierMound[i].id,t.carrierMound[i].gender,t.carrierMound[i].species),r.Load(t.carrierMound[i]),this.carrierMound.push(r);
 				for(this.factoryMound.removeAll(),i=0;
 				i<t.factoryMound.length;
-				i++)r=new Critter(t.factoryMound[i].generation,t.factoryMound[i].id,t.factoryMound[i].gender),r.Load(t.factoryMound[i]),this.factoryMound.push(r);
+				i++)r=new Critter(t.factoryMound[i].generation,t.factoryMound[i].id,t.factoryMound[i].gender,t.factoryMound[i].species),r.Load(t.factoryMound[i]),this.factoryMound.push(r);
 				for(this.armyMound.removeAll(),i=0;
 				i<t.armyMound.length;
-				i++)r=new Critter(t.armyMound[i].generation,t.armyMound[i].id,t.armyMound[i].gender),r.Load(t.armyMound[i]),this.armyMound.push(r);
+				i++)r=new Critter(t.armyMound[i].generation,t.armyMound[i].id,t.armyMound[i].gender,t.armyMound[i].species),r.Load(t.armyMound[i]),this.armyMound.push(r);
 				this.armyUpgrades(new ArmyUpgrades);
 				this.armyUpgrades().strengthBonus(t.armyUpgrades.strengthBonus);
 				this.armyUpgrades().agilityBonus(t.armyUpgrades.agilityBonus);
@@ -1650,8 +1650,12 @@ this.achievementBonus = ko.computed(function() {
 		this.generation=n;
 		this.id=t;
 		this.gender=i;
-		// Initialize traits based on species
-		this.initializeTraits();
+		// Initialize traits - use original method for stability
+		this.traits.push(new Trait(0,"vitality",5));
+		this.traits.push(new Trait(1,"strength",5));
+		this.traits.push(new Trait(2,"agility",5));
+		this.traits.push(new Trait(3,"bite",5));
+		this.traits.push(new Trait(4,"sting",5));
 		// Set species name
 		var speciesNames=["Ant","Beetle","Spider","Mantis","Butterfly","Hornet"];
 		this.speciesName=speciesNames[this.species]||"Ant"
