@@ -1,7 +1,13 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
+// Use repository name for GitHub Pages base path
+const base = process.env.GITHUB_PAGES === 'true'
+  ? '/critter-mound-reforked/'
+  : '/'
+
 export default defineConfig({
+  base,
   root: './',
   publicDir: 'public',
   build: {
