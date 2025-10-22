@@ -2,6 +2,7 @@
  * Main Stylesheet
  * Critter Mound - Modernized
  * Phase 1: Foundation & CSS Architecture
+ * Phase 2: Visual Refresh & Modern Design
  */
 
 /* ========================================
@@ -13,6 +14,7 @@
    BASE STYLES
    ======================================== */
 @import './base.css';
+@import './typography.css';
 
 /* ========================================
    LAYOUT
@@ -25,6 +27,7 @@
 @import './components/buttons.css';
 @import './components/tables.css';
 @import './components/modals.css';
+@import './components/theme-toggle.css';
 
 /* ========================================
    THIRD-PARTY OVERRIDES
