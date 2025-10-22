@@ -1,0 +1,120 @@
+/**
+ * Modal & Dialog Styles
+ */
+
+/* ========================================
+   MODAL BASE
+   ======================================== */
+
+.modal {
+  background-color: var(--color-background);
+  border: var(--border-width-thick) solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-xl);
+  max-width: 600px;
+  width: 90%;
+}
+
+.modal h4 {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-xl);
+}
+
+.modal textarea {
+  width: 100%;
+  padding: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  resize: vertical;
+  min-height: 200px;
+}
+
+.modal textarea:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+/* Modal close button */
+.simplemodal-close {
+  float: right;
+  margin-left: var(--space-2);
+}
+
+/* ========================================
+   MODAL BACKDROP
+   ======================================== */
+
+.simplemodal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-modal-backdrop);
+}
+
+.simplemodal-container {
+  z-index: var(--z-modal);
+}
+
+/* ========================================
+   ACHIEVEMENT CARDS
+   ======================================== */
+
+div.achievement {
+  background-color: var(--color-surface);
+  color: var(--color-text-disabled);
+  display: inline-block;
+  margin: var(--space-2);
+  width: 190px;
+  text-align: center;
+  padding: var(--space-3);
+  border: var(--border-width-thick) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  white-space: nowrap;
+  transition: all var(--transition-base);
+}
+
+div.achievement .name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-2);
+}
+
+div.achievement .desc {
+  padding-top: var(--space-1);
+  font-size: var(--text-xs);
+  white-space: normal;
+}
+
+div.achievement.unlocked {
+  background-color: var(--color-army);
+  color: white;
+  border-color: var(--color-army-hover);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 767px) {
+  .modal {
+    padding: var(--space-3);
+    width: 95%;
+  }
+
+  .modal textarea {
+    min-height: 150px;
+    font-size: 12px;
+  }
+
+  div.achievement {
+    width: 100%;
+    max-width: 190px;
+    margin: var(--space-1);
+  }
+}

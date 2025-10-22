@@ -21,13 +21,37 @@ The game is automatically deployed to GitHub Pages and can be played at:
 
 ## Local Development
 
-Simply open `index.html` in your browser, or run a local web server:
+### Modern Development (Recommended - Phase 1+)
+
+The project now uses Vite for modern development with hot module replacement:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server with HMR
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+The dev server will automatically open at `http://localhost:3000`
+
+### Legacy Development
+
+Alternatively, you can still open `index.html` directly or run a simple server:
 
 ```bash
 python3 -m http.server 3000
 ```
 
 Then visit `http://localhost:3000` in your browser.
+
+**Note:** For the best development experience with live reload and modern tooling, use the Vite development server.
 
 ## Deployment
 
@@ -86,6 +110,50 @@ This repository includes two GitHub Actions workflows:
    - Builds and pushes Docker images to GitHub Container Registry (ghcr.io)
    - Tags images with branch name, SHA, and semantic versions (for tags)
 
+## Modernization
+
+This project is undergoing a phased modernization effort to bring it up to modern web standards.
+
+**Status:** Phase 1 Complete ✅
+
+See [MODERNIZATION_PLAN.md](./MODERNIZATION_PLAN.md) for details.
+
+### Phase 1: Foundation & Tooling (Completed)
+
+- ✅ Modern build system with Vite
+- ✅ Organized CSS architecture with design tokens
+- ✅ CSS custom properties for theming
+- ✅ Dark mode support (ready to implement)
+- ✅ Responsive layout foundation
+- ✅ Modern development workflow
+- ✅ Code quality tools (Prettier, ESLint)
+
+### Project Structure
+
+```
+critter-mound/
+├── src/
+│   ├── styles/          # Modern CSS architecture
+│   │   ├── variables.css    # Design tokens
+│   │   ├── base.css         # Reset & globals
+│   │   ├── layout.css       # Page structure
+│   │   └── components/      # Component styles
+│   ├── scripts/         # JavaScript files
+│   └── assets/          # Images & icons
+├── index.html           # Main game file
+├── package.json         # Dependencies
+├── vite.config.js       # Build configuration
+└── MODERNIZATION_PLAN.md
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit issues and pull requests.
+
+### Development Guidelines
+
+1. Use the Vite dev server for development (`npm run dev`)
+2. Follow the existing CSS architecture in `src/styles/`
+3. Use CSS custom properties from `variables.css`
+4. Run `npm run format` before committing
+5. Test on multiple screen sizes

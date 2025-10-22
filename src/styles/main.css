@@ -1,0 +1,32 @@
+/**
+ * Main Stylesheet
+ * Critter Mound - Modernized
+ * Phase 1: Foundation & CSS Architecture
+ */
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+@import './variables.css';
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+@import './base.css';
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+@import './layout.css';
+
+/* ========================================
+   COMPONENTS
+   ======================================== */
+@import './components/buttons.css';
+@import './components/tables.css';
+@import './components/modals.css';
+
+/* ========================================
+   THIRD-PARTY OVERRIDES
+   ======================================== */
+@import './tipped.css';
