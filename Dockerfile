@@ -6,7 +6,6 @@ COPY index.html /usr/share/nginx/html/
 COPY index.htm /usr/share/nginx/html/
 COPY Scripts/ /usr/share/nginx/html/Scripts/
 COPY Content/ /usr/share/nginx/html/Content/
-COPY README.md /usr/share/nginx/html/
 
 # Expose port 80
 EXPOSE 80

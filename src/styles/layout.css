@@ -1,0 +1,284 @@
+/**
+ * Layout Styles
+ * Page structure and responsive layouts
+ */
+
+/* ========================================
+   MAIN CONTAINER
+   ======================================== */
+
+#pageContent {
+  max-width: var(--container-max-width);
+  min-width: var(--container-min-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.title {
+  font-weight: var(--font-bold);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+}
+
+/* Resource display in header */
+.resources-display {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--font-medium);
+}
+
+/* ========================================
+   TAB NAVIGATION
+   ======================================== */
+
+ul.tabs {
+  display: flex;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  margin: 0 0 var(--space-4) 0;
+  list-style-type: none;
+  flex-wrap: wrap;
+}
+
+ul.tabs li {
+  display: inline-block;
+  margin: 0;
+}
+
+ul.tabs li a {
+  display: block;
+  font-weight: var(--font-semibold);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: all var(--transition-fast);
+  outline: none;
+  cursor: pointer;
+}
+
+ul.tabs li a:hover {
+  background-color: var(--color-surface-hover);
+  text-decoration: none;
+}
+
+ul.tabs li a:visited {
+  color: var(--color-text);
+}
+
+/* Tab-specific colors */
+ul.tabs li.female a,
+ul.tabs li.female a:hover {
+  background-color: var(--color-female);
+}
+
+ul.tabs li.male a,
+ul.tabs li.male a:hover {
+  background-color: var(--color-male);
+}
+
+ul.tabs li.mine a,
+ul.tabs li.mine a:hover {
+  background-color: var(--color-mine);
+}
+
+ul.tabs li.army a,
+ul.tabs li.army a:hover {
+  background-color: var(--color-army);
+  color: white;
+}
+
+ul.tabs li.army.battle a,
+ul.tabs li.army.battle a:hover {
+  background-color: var(--color-enemy);
+  color: white;
+}
+
+ul.tabs li.achievement a,
+ul.tabs li.achievement a:hover {
+  background-color: #00008b;
+  color: white;
+}
+
+/* Selected/active tab */
+ul.tabs li.selected a,
+ul.tabs li.selected a:hover {
+  background-color: var(--color-background);
+  border-bottom-color: var(--color-background);
+  color: var(--color-text);
+  position: relative;
+  top: 1px;
+}
+
+/* ========================================
+   TAB CONTENT
+   ======================================== */
+
+div.tabcontents {
+  border: var(--border-width) solid var(--color-border);
+  background-color: var(--color-background);
+  border-radius: 0 var(--border-radius-md) var(--border-radius-md) var(--border-radius-md);
+  min-height: 620px;
+  padding: var(--space-4);
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+/* ========================================
+   PROGRESS BARS
+   ======================================== */
+
+.progressbarborder {
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--space-1);
+  overflow: hidden;
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-surface);
+  height: 24px;
+}
+
+.progressbar {
+  height: 100%;
+  transition: width var(--transition-slow);
+  border-radius: var(--border-radius-sm);
+}
+
+.progressbar.boy {
+  background-color: var(--color-male);
+  float: right;
+}
+
+.progressbar.girl {
+  background-color: var(--color-female);
+}
+
+.progressbar.mine {
+  background-color: var(--color-mine);
+}
+
+.progressbar.army {
+  background-color: var(--color-army);
+}
+
+.progressbar.enemy {
+  background-color: var(--color-enemy);
+}
+
+/* ========================================
+   ICONS & IMAGES
+   ======================================== */
+
+.imageleftandtext {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.imageleftandtext .image {
+  vertical-align: middle;
+}
+
+.imageleftandtext .text {
+  margin: 0;
+  vertical-align: bottom;
+}
+
+img.image {
+  display: inline-block;
+}
+
+/* ========================================
+   RESPONSIVE LAYOUT
+   ======================================== */
+
+/* Tablet and below */
+@media (max-width: 1023px) {
+  #pageContent {
+    padding: var(--space-3);
+  }
+
+  .title {
+    font-size: var(--text-xl);
+  }
+
+  ul.tabs {
+    gap: var(--space-1);
+  }
+
+  ul.tabs li a {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+  }
+
+  div.tabcontents {
+    min-height: 400px;
+    padding: var(--space-3);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  #pageContent {
+    padding: var(--space-2);
+    min-width: auto;
+  }
+
+  .title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-3);
+  }
+
+  ul.tabs {
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  ul.tabs li {
+    flex: 1 1 auto;
+  }
+
+  ul.tabs li a {
+    padding: var(--space-2);
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  div.tabcontents {
+    border-radius: var(--border-radius-md);
+    min-height: auto;
+    padding: var(--space-2);
+  }
+
+  .resources-display {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}

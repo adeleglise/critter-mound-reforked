@@ -1,0 +1,262 @@
+/**
+ * Button Styles
+ * Modern button components with variants
+ */
+
+/* ========================================
+   BASE BUTTON
+   ======================================== */
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  padding: var(--space-2) var(--space-4);
+  min-width: 75px;
+
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  font-variant: small-caps;
+  line-height: 1;
+  text-align: center;
+
+  color: var(--color-text);
+  background-color: var(--color-surface);
+
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: all var(--transition-fast);
+
+  /* Focus styles */
+  outline: none;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--color-surface-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* ========================================
+   BUTTON VARIANTS - Gender/Type
+   ======================================== */
+
+button.female {
+  background-color: var(--color-female);
+  border-color: var(--color-female-dark);
+}
+
+button.female:hover:not(:disabled) {
+  background-color: var(--color-female-dark);
+}
+
+button.male {
+  background-color: var(--color-male);
+  border-color: var(--color-male-dark);
+}
+
+button.male:hover:not(:disabled) {
+  background-color: var(--color-male-dark);
+}
+
+button.mine {
+  background-color: var(--color-mine);
+  border-color: var(--color-mine-dark);
+}
+
+button.mine:hover:not(:disabled) {
+  background-color: var(--color-mine-dark);
+}
+
+button.army {
+  background-color: var(--color-army);
+  border-color: var(--color-army);
+  color: white;
+}
+
+button.army:hover:not(:disabled) {
+  background-color: var(--color-army-hover);
+}
+
+button.army.battle {
+  background-color: var(--color-enemy);
+  border-color: var(--color-enemy);
+  color: white;
+}
+
+button.army.battle:hover:not(:disabled) {
+  background-color: var(--color-enemy-hover);
+}
+
+button.recycle {
+  background-color: #006400;
+  border-color: #004d00;
+  color: white;
+}
+
+button.recycle:hover:not(:disabled) {
+  background-color: #004d00;
+}
+
+button.upgrade {
+  background-color: #bfebbf;
+  border-color: #9fdb9f;
+}
+
+button.upgrade:hover:not(:disabled) {
+  background-color: #9fdb9f;
+}
+
+/* ========================================
+   BUTTON SIZES
+   ======================================== */
+
+button.war {
+  font-size: var(--text-2xl);
+  padding: var(--space-3) var(--space-5);
+  white-space: nowrap;
+  margin: var(--space-2);
+  width: 190px;
+  display: inline-block;
+  font-weight: var(--font-bold);
+  min-height: 100px;
+  flex-direction: column;
+}
+
+button.war .info {
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  margin-top: var(--space-2);
+}
+
+button.war.unlocked {
+  background-color: var(--color-enemy);
+  border-color: var(--color-enemy-hover);
+  color: white;
+}
+
+button.war.unlocked:hover:not(:disabled) {
+  background-color: var(--color-enemy-hover);
+}
+
+/* ========================================
+   SELECT DROPDOWNS
+   ======================================== */
+
+select {
+  padding: var(--space-2) var(--space-3);
+  font-variant: small-caps;
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+
+  color: var(--color-text);
+  background-color: var(--color-surface);
+
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius-md);
+
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+select:hover {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-primary);
+}
+
+select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+/* ========================================
+   RANGE SLIDER
+   ======================================== */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: var(--border-radius-full);
+  background: var(--color-surface);
+  outline: none;
+  opacity: 0.9;
+  transition: opacity var(--transition-fast);
+}
+
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--color-primary-hover);
+  transform: scale(1.1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: var(--color-primary-hover);
+  transform: scale(1.1);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 767px) {
+  button {
+    min-width: 60px;
+    padding: var(--space-2) var(--space-3);
+    font-size: 11px;
+  }
+
+  button.war {
+    width: 100%;
+    max-width: 190px;
+    font-size: var(--text-xl);
+    padding: var(--space-3);
+  }
+}

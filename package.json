@@ -1,0 +1,37 @@
+{
+  "name": "critter-mound",
+  "version": "2.0.0",
+  "description": "Critter Mound - Modern incremental breeding game",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{js,css,html}\"",
+    "lint": "eslint src --ext .js"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "knockout": "^3.5.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "postcss": "^8.4.47",
+    "autoprefixer": "^10.4.20",
+    "prettier": "^3.3.3",
+    "eslint": "^8.57.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "game",
+    "incremental",
+    "idle",
+    "breeding",
+    "critters"
+  ],
+  "author": "",
+  "license": "MIT"
+}

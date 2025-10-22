@@ -1,0 +1,391 @@
+/**
+ * Table Styles
+ * Critter tables, production tables, maps, etc.
+ */
+
+/* ========================================
+   BASE TABLE
+   ======================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td {
+  font-size: var(--text-sm);
+}
+
+/* ========================================
+   CRITTER TABLES
+   ======================================== */
+
+table.critter {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: var(--space-4);
+}
+
+table.critter th {
+  background-color: #f3ce8b;
+  font-variant: small-caps;
+  font-size: var(--text-base);
+  text-align: center;
+  font-weight: var(--font-bold);
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--space-2);
+  color: var(--color-text);
+}
+
+table.critter td {
+  text-align: center;
+  vertical-align: middle;
+  font-size: var(--text-xs);
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--space-2);
+  white-space: nowrap;
+  transition: background-color var(--transition-fast);
+}
+
+table.critter td:hover {
+  background-color: var(--color-surface-hover);
+}
+
+table.critter td.traitcell {
+  height: 38px;
+  width: 15%;
+}
+
+table.critter th.traitcell {
+  width: 15%;
+}
+
+table.critter .trait {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+}
+
+/* ========================================
+   CRITTER TABLE ROWS
+   ======================================== */
+
+table.critter tr.alt {
+  background-color: var(--color-surface);
+}
+
+table.critter tr.newest {
+  background-color: #f8eed0 !important;
+}
+
+table.critter tr.newest td.noborder {
+  background-color: transparent !important;
+}
+
+table.critter tr.selected {
+  background-color: #daf8dc !important;
+}
+
+table.critter tr.defender {
+  background-color: #fee;
+}
+
+table.critter tr.defender .defendTrait {
+  background-color: #e6bfbf;
+}
+
+table.critter tr.attacker {
+  background-color: #daf8dc;
+}
+
+table.critter tr.attacker .attackTrait {
+  background-color: #abebb0;
+}
+
+table.critter tr.dead {
+  opacity: 0.7;
+}
+
+table.critter tr.dead td {
+  border: var(--border-width) solid #ddd;
+}
+
+table.critter tr.dead td:hover {
+  background-color: transparent !important;
+}
+
+/* ========================================
+   HEALTH BARS
+   ======================================== */
+
+table.critter tr.health td {
+  overflow: hidden;
+  padding: var(--space-1) 0 0 0;
+  border: none;
+}
+
+table.critter tr.health div {
+  background-color: var(--color-health);
+  height: 5px;
+  transition: width var(--transition-base);
+  border-radius: var(--border-radius-sm);
+}
+
+table.critter tr.health.dead {
+  opacity: 0;
+}
+
+table.critter tr.health.dead td {
+  border: var(--border-width) solid #ddd;
+}
+
+table.critter tr.defenderHealth div {
+  background-color: #8b0000 !important;
+}
+
+/* Hide health bars on hatchery tables */
+table.hatchery tr.health {
+  display: none !important;
+}
+
+/* ========================================
+   CRITTER TYPE COLORS
+   ======================================== */
+
+/* Female */
+table.critter.female th {
+  background-color: var(--color-female);
+}
+
+table.critter.female td.health div {
+  background-color: var(--color-health-female) !important;
+}
+
+/* Male */
+table.critter.male th {
+  background-color: var(--color-male);
+}
+
+table.critter.male td.health div {
+  background-color: var(--color-health-male) !important;
+}
+
+/* Carrier */
+table.critter.carrier th {
+  background-color: var(--color-carrier);
+}
+
+table.critter.carrier td.health div {
+  background-color: #833111 !important;
+}
+
+table.critter.carrier td.carry {
+  background-color: #f8e0d5 !important;
+}
+
+/* Mine */
+table.critter.mine th {
+  background-color: var(--color-mine);
+}
+
+table.critter.mine td.health div {
+  background-color: #5c4e40 !important;
+}
+
+table.critter.mine td.mine {
+  background-color: #eae1d1 !important;
+}
+
+/* Farm */
+table.critter.farm th {
+  background-color: var(--color-farm);
+}
+
+table.critter.farm td.health div {
+  background-color: #607049 !important;
+}
+
+table.critter.farm td.farm {
+  background-color: #e7eedc !important;
+}
+
+/* Factory */
+table.critter.factory th {
+  background-color: var(--color-factory);
+}
+
+table.critter.factory td.health div {
+  background-color: #575170 !important;
+}
+
+table.critter.factory td.factory {
+  background-color: #e3e2f2 !important;
+}
+
+/* Army */
+table.critter.army th {
+  background-color: var(--color-army);
+  color: white;
+}
+
+/* Enemy Army */
+table.critter.enemyarmy th {
+  background-color: var(--color-enemy);
+  color: white;
+}
+
+/* ========================================
+   PRODUCTION TABLE
+   ======================================== */
+
+table.production {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 0 auto;
+  max-width: 1050px;
+}
+
+table.production th {
+  text-align: center;
+  font-weight: var(--font-bold);
+  padding: var(--space-2);
+}
+
+table.production tr.header th {
+  font-size: var(--text-sm);
+}
+
+table.production tr.stats th {
+  font-size: var(--text-sm);
+}
+
+/* ========================================
+   MAP TABLE
+   ======================================== */
+
+table.map {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: var(--space-4);
+}
+
+table.map td {
+  width: 5%;
+  height: 25px;
+  font-size: var(--text-sm);
+  border: var(--border-width) solid var(--color-border);
+  text-align: center;
+  vertical-align: middle;
+  font-weight: var(--font-bold);
+  background-color: var(--color-surface);
+  transition: all var(--transition-fast);
+}
+
+table.map td.fog {
+  background-color: var(--color-map-fog);
+}
+
+table.map td.unlocked {
+  background-color: var(--color-map-unlocked);
+  cursor: pointer;
+}
+
+table.map td.unlocked:hover {
+  background-color: #666;
+}
+
+/* Map clear colors (difficulty levels) */
+table.map td.clear1 { background-color: #7cffb0; }
+table.map td.clear2 { background-color: #6aff85; }
+table.map td.clear3 { background-color: #92fe73; }
+table.map td.clear4 { background-color: #aafe77; }
+table.map td.clear5 { background-color: #c2fe77; }
+table.map td.clear6 { background-color: #dbfe9a; }
+table.map td.clear7 { background-color: #e8ca54; }
+table.map td.clear8 { background-color: #fb6; }
+table.map td.clear9 { background-color: #ed8466; }
+table.map td.clear10 { background-color: #fb734c; }
+table.map td.clear11 { background-color: #c77f8b; }
+table.map td.clear12 { background-color: #b95768; }
+table.map td.clear13 { background-color: #b13a52; }
+table.map td.clear14 { background-color: #97001e; }
+
+/* Map special tiles with icons */
+table.map td.mound,
+table.map td.enemy,
+table.map td.mine,
+table.map td.farm,
+table.map td.carry,
+table.map td.factory,
+table.map td.fort,
+table.map td.explore,
+table.map td.treasure,
+table.map td.gene,
+table.map td.boost {
+  background-color: #000;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+}
+
+/* ========================================
+   TABLE HEADER
+   ======================================== */
+
+.tableheader,
+h4 {
+  font-weight: var(--font-bold);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  text-align: left;
+  font-variant: normal;
+  white-space: nowrap;
+  margin: 0 0 var(--space-2) 0;
+}
+
+/* ========================================
+   RESPONSIVE TABLES
+   ======================================== */
+
+@media (max-width: 1023px) {
+  table.critter {
+    font-size: var(--text-xs);
+  }
+
+  table.critter td,
+  table.critter th {
+    padding: var(--space-1);
+  }
+
+  table.production {
+    font-size: var(--text-xs);
+  }
+
+  table.map td {
+    height: 20px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Make tables scrollable on mobile */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table.critter,
+  table.production {
+    min-width: 600px;
+  }
+
+  table.map {
+    min-width: 500px;
+  }
+
+  table.critter td,
+  table.critter th {
+    font-size: 11px;
+    padding: 2px;
+  }
+}
