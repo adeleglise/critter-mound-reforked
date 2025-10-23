@@ -10,19 +10,19 @@
     <meta name="robots" content="INDEX, NOFOLLOW">
 
     <!-- Modernized CSS -->
-    <link rel="stylesheet" href="/src/styles/main.css">
+    <link rel="stylesheet" href="./src/styles/main.css">
 
     <!-- Theme Manager - Load early for no flash -->
-    <script src="/src/scripts/theme.js"></script>
+    <script src="./src/scripts/theme.js"></script>
 
     <!-- Legacy Dependencies (to be updated) -->
-    <script src="/src/scripts/jquery-2.1.1.min.js"></script>
-    <script src="/src/scripts/knockout-3.1.0.js"></script>
-    <script src="/src/scripts/tipped.js"></script>
-    <script src="/src/scripts/imagesloaded.pkgd.min.js"></script>
-    <script src="/src/scripts/notify.min.js"></script>
-    <script src="/src/scripts/jquery.base64.min.js"></script>
-    <script src="/src/scripts/jquery.simplemodal.1.4.4.min.js"></script>
+    <script src="./src/scripts/jquery-2.1.1.min.js"></script>
+    <script src="./src/scripts/knockout-3.1.0.js"></script>
+    <script src="./src/scripts/tipped.js"></script>
+    <script src="./src/scripts/imagesloaded.pkgd.min.js"></script>
+    <script src="./src/scripts/notify.min.js"></script>
+    <script src="./src/scripts/jquery.base64.min.js"></script>
+    <script src="./src/scripts/jquery.simplemodal.1.4.4.min.js"></script>
 </head>
 
 <body>
@@ -239,7 +239,7 @@
                                 <thead>
                                     <tr>
                                         <th class="noborder" colspan="7">
-                                            <img src="/src/assets/images/Production.png" alt="" style="width: 986px" />
+                                            <img src="./src/assets/images/Production.png" alt="" style="width: 986px" />
                                         </th>
                                     </tr>
                                     <tr class="header">
@@ -467,20 +467,20 @@
                                             <th colspan="15" class="noborder tableheader">
                                                 Map is <span data-bind="text: map().completePercentage() + ' finished'"></span>
                                                 <!-- ko if: nation() != undefined -->
-                                                <img title="Enemy Mound" data-bind="attr: { src: nation().isDefeated() ? '/src/assets/icons/star.png' : '/src/assets/icons/staroff.png'}" />
-                                                <img title="100% Explored" data-bind="attr: { src: nation().mapComplete() ? '/src/assets/icons/complete.png' : '/src/assets/icons/completeoff.png'}" />
-                                                <img title="Mine" data-bind="attr: { src: nation().mineFound() ? '/src/assets/icons/mine.png' : '/src/assets/icons/mineoff.png'}" />
-                                                <img title="Farm" data-bind="attr: { src: nation().farmFound() ? '/src/assets/icons/farm.png' : '/src/assets/icons/farmoff.png'}" />
-                                                <img title="Equipment" data-bind="attr: { src: nation().carryFound() ? '/src/assets/icons/carry.png' : '/src/assets/icons/carryoff.png'}" />
-                                                <img title="Factory" data-bind="attr: { src: nation().factoryFound() ? '/src/assets/icons/factory.png' : '/src/assets/icons/factoryoff.png'}" />
-                                                <img title="Boost" data-bind="attr: { src: nation().boostFound() ? '/src/assets/icons/heart.png' : '/src/assets/icons/heartoff.png'}" />
-                                                <img title="Gene" data-bind="attr: { src: nation().geneFound() ? '/src/assets/icons/bug.png' : '/src/assets/icons/bugoff.png'}" />
-                                                <img title="Fort" data-bind="attr: { src: nation().fortFound() ? '/src/assets/icons/fort.png' : '/src/assets/icons/fortoff.png'}" />
-                                                <img title="High Ground" data-bind="attr: { src: nation().exploreFound() ? '/src/assets/icons/zoom.png' : '/src/assets/icons/zoomoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 0 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 1 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 2 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 3 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
+                                                <img title="Enemy Mound" data-bind="attr: { src: nation().isDefeated() ? './src/assets/icons/star.png' : './src/assets/icons/staroff.png'}" />
+                                                <img title="100% Explored" data-bind="attr: { src: nation().mapComplete() ? './src/assets/icons/complete.png' : './src/assets/icons/completeoff.png'}" />
+                                                <img title="Mine" data-bind="attr: { src: nation().mineFound() ? './src/assets/icons/mine.png' : './src/assets/icons/mineoff.png'}" />
+                                                <img title="Farm" data-bind="attr: { src: nation().farmFound() ? './src/assets/icons/farm.png' : './src/assets/icons/farmoff.png'}" />
+                                                <img title="Equipment" data-bind="attr: { src: nation().carryFound() ? './src/assets/icons/carry.png' : './src/assets/icons/carryoff.png'}" />
+                                                <img title="Factory" data-bind="attr: { src: nation().factoryFound() ? './src/assets/icons/factory.png' : './src/assets/icons/factoryoff.png'}" />
+                                                <img title="Boost" data-bind="attr: { src: nation().boostFound() ? './src/assets/icons/heart.png' : './src/assets/icons/heartoff.png'}" />
+                                                <img title="Gene" data-bind="attr: { src: nation().geneFound() ? './src/assets/icons/bug.png' : './src/assets/icons/bugoff.png'}" />
+                                                <img title="Fort" data-bind="attr: { src: nation().fortFound() ? './src/assets/icons/fort.png' : './src/assets/icons/fortoff.png'}" />
+                                                <img title="High Ground" data-bind="attr: { src: nation().exploreFound() ? './src/assets/icons/zoom.png' : './src/assets/icons/zoomoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 0 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 1 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 2 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: nation().treasuresFound() > 3 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
                                                 <!-- /ko -->
                                             </th>
                                             <th colspan="10" class="noborder" style="text-align: right;">
@@ -501,20 +501,20 @@
                                             <div class="info" data-bind="text: desc"></div>
                                             <div class="info" data-bind="text: 'score ' + lowBaseValue + ' to ' + highBaseValue"></div>
                                             <div style="margin-top: 5px">
-                                                <img title="Enemy Mound" data-bind="attr: { src: isDefeated() ? '/src/assets/icons/star.png' : '/src/assets/icons/staroff.png'}" />
-                                                <img title="100% Explored" data-bind="attr: { src: mapComplete() ? '/src/assets/icons/complete.png' : '/src/assets/icons/completeoff.png'}" />
-                                                <img title="Mine" data-bind="attr: { src: mineFound() ? '/src/assets/icons/mine.png' : '/src/assets/icons/mineoff.png'}" />
-                                                <img title="Farm" data-bind="attr: { src: farmFound() ? '/src/assets/icons/farm.png' : '/src/assets/icons/farmoff.png'}" />
-                                                <img title="Equipment" data-bind="attr: { src: carryFound() ? '/src/assets/icons/carry.png' : '/src/assets/icons/carryoff.png'}" />
-                                                <img title="Factory" data-bind="attr: { src: factoryFound() ? '/src/assets/icons/factory.png' : '/src/assets/icons/factoryoff.png'}" />
-                                                <img title="Boost" data-bind="attr: { src: boostFound() ? '/src/assets/icons/heart.png' : '/src/assets/icons/heartoff.png'}" /><br />
-                                                <img title="Gene" data-bind="attr: { src: geneFound() ? '/src/assets/icons/bug.png' : '/src/assets/icons/bugoff.png'}" />
-                                                <img title="Fort" data-bind="attr: { src: fortFound() ? '/src/assets/icons/fort.png' : '/src/assets/icons/fortoff.png'}" />
-                                                <img title="High Ground" data-bind="attr: { src: exploreFound() ? '/src/assets/icons/zoom.png' : '/src/assets/icons/zoomoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 0 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 1 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 2 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
-                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 3 ? '/src/assets/icons/treasure.png' : '/src/assets/icons/treasureoff.png'}" />
+                                                <img title="Enemy Mound" data-bind="attr: { src: isDefeated() ? './src/assets/icons/star.png' : './src/assets/icons/staroff.png'}" />
+                                                <img title="100% Explored" data-bind="attr: { src: mapComplete() ? './src/assets/icons/complete.png' : './src/assets/icons/completeoff.png'}" />
+                                                <img title="Mine" data-bind="attr: { src: mineFound() ? './src/assets/icons/mine.png' : './src/assets/icons/mineoff.png'}" />
+                                                <img title="Farm" data-bind="attr: { src: farmFound() ? './src/assets/icons/farm.png' : './src/assets/icons/farmoff.png'}" />
+                                                <img title="Equipment" data-bind="attr: { src: carryFound() ? './src/assets/icons/carry.png' : './src/assets/icons/carryoff.png'}" />
+                                                <img title="Factory" data-bind="attr: { src: factoryFound() ? './src/assets/icons/factory.png' : './src/assets/icons/factoryoff.png'}" />
+                                                <img title="Boost" data-bind="attr: { src: boostFound() ? './src/assets/icons/heart.png' : './src/assets/icons/heartoff.png'}" /><br />
+                                                <img title="Gene" data-bind="attr: { src: geneFound() ? './src/assets/icons/bug.png' : './src/assets/icons/bugoff.png'}" />
+                                                <img title="Fort" data-bind="attr: { src: fortFound() ? './src/assets/icons/fort.png' : './src/assets/icons/fortoff.png'}" />
+                                                <img title="High Ground" data-bind="attr: { src: exploreFound() ? './src/assets/icons/zoom.png' : './src/assets/icons/zoomoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 0 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 1 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 2 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
+                                                <img title="Artifact" data-bind="attr: { src: treasuresFound() > 3 ? './src/assets/icons/treasure.png' : './src/assets/icons/treasureoff.png'}" />
                                             </div>
 
                                         </button>
@@ -733,7 +733,7 @@
             </div>
         </div>
 
-        <h4 style="margin-top: 25px; text-align: center!important">Press <img src="/src/assets/icons/shiftkey.gif" style="vertical-align: text-bottom" title="Shift Key" /> to see more options</h4>
+        <h4 style="margin-top: 25px; text-align: center!important">Press <img src="./src/assets/icons/shiftkey.gif" style="vertical-align: text-bottom" title="Shift Key" /> to see more options</h4>
 
     </div>
 
@@ -912,10 +912,10 @@
         </tr>
         <tr class="critterRow" data-bind="css: { selected: isSelected, alt: $index()%2, newest: $root.newestBorn() === id}">
             <td style="width: 40px;">
-                <img class="image" data-bind="visible: isSelected" src="/src/assets/icons/tick.png" />
-                <img class="image" data-bind="visible: isLocked" src="/src/assets/icons/lock.png" />
-                <img class="image" data-bind="visible: gender === 0" title="Female" src="/src/assets/icons/female.png" />
-                <img class="image" data-bind="visible: gender === 1" title="Male" src="/src/assets/icons/male.png" />
+                <img class="image" data-bind="visible: isSelected" src="./src/assets/icons/tick.png" />
+                <img class="image" data-bind="visible: isLocked" src="./src/assets/icons/lock.png" />
+                <img class="image" data-bind="visible: gender === 0" title="Female" src="./src/assets/icons/female.png" />
+                <img class="image" data-bind="visible: gender === 1" title="Male" src="./src/assets/icons/male.png" />
             </td>
             <td class="tipped traitcell" data-bind="attr: { 'data-tipped-options': 'inline: ' + '\'critter_tip_' + id + '_score\''}">
                 <div class="trait" data-bind="text: gameFormatNumber(score), css: { higher: (job === 1 && ((gender === 0 && score> $root.mother().score) || (gender === 1 && score > $root.father().score))) || (job === 5 && ((gender === 0 && score> $root.princess().score) || (gender === 1 && score > $root.prince().score))), lower: (job === 1 && ((gender === 0 && score < $root.mother().score) || (gender === 1 && score < $root.father().score))) || (job === 5 && ((gender === 0 && score < $root.princess().score) || (gender === 1 && score < $root.prince().score))) }"></div>
@@ -933,7 +933,7 @@
                 <div style="margin-top: 2px;" class="imageleftandtext" data-bind="visible: ($parent.job !== 4 && value >= 25) || genes.length > 0, css: { higher: ($parent.job === 1 && (($parent.gender === 0 && genes.length > $root.mother().traits[$index()].genes.length) || ($parent.gender === 1 && genes.length > $root.father().traits[$index()].genes.length))) || ($parent.job === 5 && (($parent.gender === 0 && genes.length > $root.princess().traits[$index()].genes.length) || ($parent.gender === 1 && genes.length > $root.prince().traits[$index()].genes.length))), lower: ($parent.job === 1 && (($parent.gender === 0 && genes.length < $root.mother().traits[$index()].genes.length) || ($parent.gender === 1 && genes.length < $root.father().traits[$index()].genes.length))) || ($parent.job === 5 && (($parent.gender === 0 && genes.length < $root.princess().traits[$index()].genes.length) || ($parent.gender === 1 && genes.length < $root.prince().traits[$index()].genes.length))), dim: genes.length == 0 }">
                     <span data-bind="text: genes.length"></span>
                     <span data-bind="text: genes.length == 1 ? ' Mutation' : ' Mutations'"></span>
-                    <span data-bind="if: mutation"><img class="image" title="New Mutation" src="/src/assets/icons/new.png" /></span>
+                    <span data-bind="if: mutation"><img class="image" title="New Mutation" src="./src/assets/icons/new.png" /></span>
                 </div>
             </td>
             <!-- ko template: { name: 'traitTip', data: $data } -->
@@ -950,9 +950,9 @@
         </tr>
         <tr class="critterRow" data-bind="css: { selected: isSelected, alt: $index()%2 }">
             <td style="width: 40px;">
-                <img class="image" data-bind="visible: isSelected" src="/src/assets/icons/tick.png" />
-                <img class="image" data-bind="visible: gender === 0" title="Female" src="/src/assets/icons/female.png" />
-                <img class="image" data-bind="visible: gender === 1" title="Male" src="/src/assets/icons/male.png" />
+                <img class="image" data-bind="visible: isSelected" src="./src/assets/icons/tick.png" />
+                <img class="image" data-bind="visible: gender === 0" title="Female" src="./src/assets/icons/female.png" />
+                <img class="image" data-bind="visible: gender === 1" title="Male" src="./src/assets/icons/male.png" />
             </td>
             <td class="traitcell trait tipped" data-bind="attr: { 'data-tipped-options': 'inline: ' + '\'critter_tip_' + id + '_score\''}">
                 <div class="trait" data-bind="text: gameFormatNumber(score)"></div>
@@ -1018,9 +1018,9 @@
         </tr>
         <tr class="critterRow" data-bind="css: { selected: isSelected, attacker: $root.battleAttackerId() === id, defender: $root.battleDefenderId() === id, dead: (job === 3 || job === 4) && currentHealth() <= 0, alt: $index()%2 }">
             <td style="width: 40px;">
-                <img class="image" data-bind="visible: isSelected" src="/src/assets/icons/tick.png" />
-                <img class="image" data-bind="visible: gender === 0" title="Female" src="/src/assets/icons/female.png" />
-                <img class="image" data-bind="visible: gender === 1" title="Male" src="/src/assets/icons/male.png" />
+                <img class="image" data-bind="visible: isSelected" src="./src/assets/icons/tick.png" />
+                <img class="image" data-bind="visible: gender === 0" title="Female" src="./src/assets/icons/female.png" />
+                <img class="image" data-bind="visible: gender === 1" title="Male" src="./src/assets/icons/male.png" />
             </td>
             <td class="tipped traitcell" data-bind="attr: { 'data-tipped-options': 'inline: ' + '\'critter_tip_' + id + '_score\''}">
                 <div class="trait" data-bind="text: gameFormatNumber(score), css: { higher: (job === 1 && ((gender === 0 && score> $root.mother().score) || (gender === 1 && score > $root.father().score))) || (job === 5 && ((gender === 0 && score> $root.princess().score) || (gender === 1 && score > $root.prince().score))), lower: (job === 1 && ((gender === 0 && score < $root.mother().score) || (gender === 1 && score < $root.father().score))) || (job === 5 && ((gender === 0 && score < $root.princess().score) || (gender === 1 && score < $root.prince().score))) }"></div>
@@ -1092,9 +1092,9 @@
     </div>
 
     <!-- Game Scripts -->
-    <script src="/src/scripts/tabcontent.js"></script>
-    <script src="/src/scripts/Game.js"></script>
-    <script src="/src/scripts/Site.js"></script>
+    <script src="./src/scripts/tabcontent.js"></script>
+    <script src="./src/scripts/Game.js"></script>
+    <script src="./src/scripts/Site.js"></script>
 </body>
 
 </html>
