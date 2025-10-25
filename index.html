@@ -59,7 +59,7 @@
                                     <!-- ko template: { name: 'critterHeader', data: mother } -->
                                     <!-- /ko -->
                                 </thead>
-                                <tbody data-bind="template: { name: 'critterRow', foreach: mother, as: 'critter' }"></tbody>
+                                <tbody data-bind="template: { name: 'critterRow', data: mother }"></tbody>
                             </table>
                         </td>
                         <td style="vertical-align: top; width: 50%">
@@ -73,10 +73,10 @@
                                             <button class="upgrade" data-bind="visible: maxMaleMoundSize() < 10,text: 'upgrade ' + gameFormatNumber(maleMoundUpgradeCost()) + ' sod', click: $root.Upgrade.bind($root, 'MaleHatchery'), clickBubble: false, disable: sodRaw() < maleMoundUpgradeCost()"></button>
                                         </th>
                                     </tr>
-                                    <!-- ko template: { name: 'critterHeader', data: mother } -->
+                                    <!-- ko template: { name: 'critterHeader', data: father } -->
                                     <!-- /ko -->
                                 </thead>
-                                <tbody data-bind="template: { name: 'critterRow', foreach: father, as: 'critter' }"></tbody>
+                                <tbody data-bind="template: { name: 'critterRow', data: father }"></tbody>
                             </table>
                         </td>
                     </tr>
