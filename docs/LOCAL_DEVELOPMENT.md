@@ -7,9 +7,9 @@
 | Node.js | >= 18 | [nodejs.org](https://nodejs.org/) |
 | npm | >= 9 | Bundled with Node.js |
 | Podman | >= 4.0 | [podman.io](https://podman.io/docs/installation) |
-| podman-compose | >= 1.0 | `pip install podman-compose` or `brew install podman-compose` |
+| podman compose | >= 1.0 | `pip install podman compose` or `brew install podman compose` |
 
-> Podman is a drop-in Docker replacement. All `podman` commands also work with `docker`, and `podman-compose` with `docker-compose`.
+> Podman is a drop-in Docker replacement. All `podman` commands also work with `docker`, and `podman compose` with `docker-compose`.
 
 ---
 
@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-Opens at [http://localhost:3000](http://localhost:3000) with HMR enabled.
+Opens at [http://localhost:6007](http://localhost:6007) with HMR enabled.
 
 ---
 
@@ -31,7 +31,7 @@ Opens at [http://localhost:3000](http://localhost:3000) with HMR enabled.
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start Vite dev server with HMR (port 3000) |
+| `npm run dev` | Start Vite dev server with HMR (port 6007) |
 | `npm run build` | Production build to `dist/` |
 | `npm run preview` | Preview production build locally |
 | `npm run format` | Format code with Prettier |
@@ -49,15 +49,15 @@ Opens at [http://localhost:3000](http://localhost:3000) with HMR enabled.
 ### Development (with Hot Reload)
 
 ```bash
-podman-compose up dev
+podman compose up dev
 ```
 
-This starts a Node.js container with your project root mounted as a volume. Vite's HMR works through the volume mount -- edit files locally, see changes instantly at [http://localhost:3000](http://localhost:3000).
+This starts a Node.js container with your project root mounted as a volume. Vite's HMR works through the volume mount -- edit files locally, see changes instantly at [http://localhost:6007](http://localhost:6007).
 
 ### Production Preview
 
 ```bash
-podman-compose up prod
+podman compose up prod
 ```
 
 This builds the project inside a container and serves it with nginx at [http://localhost:8080](http://localhost:8080).
@@ -72,11 +72,11 @@ podman build -t critter-mound -f Containerfile .
 podman run -d -p 8080:80 critter-mound
 
 # Stop all services
-podman-compose down
+podman compose down
 
 # Rebuild after dependency changes
-podman-compose up --build dev
-podman-compose up --build prod
+podman compose up --build dev
+podman compose up --build prod
 ```
 
 ---
@@ -90,7 +90,7 @@ If `localhost` doesn't work on macOS, try:
 # Check the Podman machine IP
 podman machine inspect --format '{{.ConnectionInfo.PodmanSocket.Path}}'
 
-# Or use 0.0.0.0 binding (already configured in podman-compose.yml)
+# Or use 0.0.0.0 binding (already configured in podman compose.yml)
 ```
 
 ### Vite HMR Not Working in Container
@@ -112,17 +112,17 @@ This is already handled in the dev container via the `CHOKIDAR_USEPOLLING=true` 
 The dev container installs `node_modules` inside the container. If you see version mismatches:
 ```bash
 # Rebuild the dev container from scratch
-podman-compose down
-podman-compose up --build dev
+podman compose down
+podman compose up --build dev
 ```
 
 ### Port Conflicts
 
-If port 3000 or 8080 is already in use:
+If port 6007 or 8080 is already in use:
 ```bash
 # Check what's using the port
-lsof -i :3000
+lsof -i :6007
 
 # Or override the port
-podman-compose run -p 3001:3000 dev
+podman compose run -p 3001:6007 dev
 ```

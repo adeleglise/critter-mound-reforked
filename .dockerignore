@@ -16,7 +16,7 @@ dist
 Dockerfile
 Containerfile
 .dockerignore
-podman-compose.yml
+compose.yml
 
 # Documentation (not needed in container)
 *.md

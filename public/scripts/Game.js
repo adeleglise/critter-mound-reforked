@@ -2131,7 +2131,7 @@ $(document).ready(function()
 		clickToHide:!0,autoHide:!0,autoHideDelay:4e3,globalPosition:"bottom right",elementPosition:"top right",gap:4,arrowShow:!1,arrowSize:5,style:"bootstrap",className:"error",showAnimation:"slideDown",showDuration:400,hideAnimation:"slideUp",hideDuration:200
 	}
 	);
-	var n=new Worker("Scripts/Worker.js");
+	var n=new Worker("/scripts/Worker.js");
 	n.onmessage=function()
 		{
 		game.Tick()
