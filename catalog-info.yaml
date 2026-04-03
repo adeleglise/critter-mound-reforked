@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: critter-mound
+  description: "Incremental browser game featuring critter breeding, worker management, combat, and prestige mechanics"
+  tags:
+    - javascript
+    - knockout
+    - jquery
+    - vite
+    - game
+    - incremental
+  annotations:
+    github.com/project-slug: adeleglise/critter-mound-reforked
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/linguist: https://github.com/adeleglise/critter-mound-reforked
+  links:
+    - url: https://adeleglise.github.io/critter-mound-reforked/
+      title: Live Game (GitHub Pages)
+      icon: dashboard
+spec:
+  type: website
+  lifecycle: production
+  owner: user:adeleglise

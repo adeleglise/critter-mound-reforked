@@ -1,0 +1,11 @@
+site_name: Critter Mound
+site_description: Incremental browser game with critter breeding, combat, and prestige mechanics
+repo_url: https://github.com/adeleglise/critter-mound-reforked
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Deployment: deployment.md
+
+plugins:
+  - techdocs-core
