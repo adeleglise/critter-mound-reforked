@@ -1,24 +1,33 @@
-# Git files
+# Dependencies
+node_modules
+
+# Build output
+dist
+
+# Git
 .git
 .gitignore
 .gitattributes
 
-# GitHub workflows
+# GitHub
 .github
 
-# Replit configuration
-.replit
-
-# Documentation (already copied explicitly)
-*.md
-
-# Docker files
+# Container files (don't copy into context recursively)
 Dockerfile
+Containerfile
 .dockerignore
+podman-compose.yml
+
+# Documentation (not needed in container)
+*.md
+docs/
 
 # IDE and editor files
 .vscode
 .idea
+.replit
+.claude
+.serena
 *.swp
 *.swo
 *~
@@ -26,3 +35,7 @@ Dockerfile
 # OS files
 .DS_Store
 Thumbs.db
+
+# Test artifacts
+playwright-report/
+test-results/
