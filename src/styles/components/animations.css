@@ -1,0 +1,89 @@
+/**
+ * Animations & Transitions
+ * Smooth visual feedback for game events
+ */
+
+/* ========================================
+   NEW CRITTER HIGHLIGHT
+   ======================================== */
+
+@keyframes critter-born {
+  0% {
+    background-color: var(--color-newest);
+    box-shadow: 0 0 8px rgba(245, 236, 208, 0.6);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+table.critter tr.newest td {
+  animation: critter-born 2s ease-out forwards;
+}
+
+/* ========================================
+   TAB CONTENT TRANSITIONS
+   ======================================== */
+
+.tab {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.tab[style*="display: block"],
+.tab[style*="display:block"] {
+  opacity: 1;
+}
+
+/* ========================================
+   PROGRESS BAR SMOOTHING
+   ======================================== */
+
+.progressbar {
+  transition: width var(--transition-slow);
+}
+
+table.critter tr.health div {
+  transition: width var(--transition-base);
+}
+
+/* ========================================
+   BUTTON INTERACTIONS
+   ======================================== */
+
+button {
+  transition: background-color var(--transition-fast),
+              border-color var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ========================================
+   TABLE ROW TRANSITIONS
+   ======================================== */
+
+table.critter tr {
+  transition: background-color var(--transition-fast);
+}
+
+/* ========================================
+   BATTLE DAMAGE FLASH
+   ======================================== */
+
+@keyframes damage-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+table.critter tr.defender {
+  animation: damage-flash 0.4s ease;
+}
