@@ -51,14 +51,14 @@ python3 -m http.server 3000
 - **Styling**: Modern CSS with custom properties, organized architecture
 
 **Build Configuration**:
-- Vite config at [vite.config.js](vite.config.js) with path aliases (`@`, `@styles`, `@scripts`, `@assets`)
+- Vite config at [vite.config.js](vite.config.js) with path aliases (`@`, `@styles`, `@assets`)
 - PostCSS with autoprefixer for browser compatibility
 - Source maps enabled for debugging
 - GitHub Pages base path handling
 
 ### Core Game Architecture
 
-**Game Logic** ([src/scripts/Game.js](src/scripts/Game.js) - ~2,215 lines):
+**Game Logic** ([public/scripts/Game.js](public/scripts/Game.js) - ~2,140 lines):
 - Main `GameController` function with Knockout.js observables
 - Game loop runs at 20 ticks per second (`ticksPerSecond = 20`)
 - Key systems:
@@ -74,7 +74,7 @@ python3 -m http.server 3000
 - `LevelFromXp(n)`: Convert XP to level (max 99)
 - `Shuffle(n)`: Randomize arrays
 
-**UI Controller** ([src/scripts/Site.js](src/scripts/Site.js) - ~102 lines):
+**UI Controller** ([public/scripts/Site.js](public/scripts/Site.js) - ~102 lines):
 - jQuery-based UI interactions
 - Tooltip management with Tipped.js (refreshes every 500ms)
 - Event handlers for critter selection, shift-key modifiers
@@ -99,18 +99,19 @@ critter-mound/
 │   │   ├── layout.css       # Page structure, grid
 │   │   ├── tipped.css       # Tooltip library styles
 │   │   └── components/      # Component-specific styles
-│   ├── scripts/
-│   │   ├── Game.js          # Core game logic (~2,215 lines)
-│   │   ├── Site.js          # UI interactions (~102 lines)
-│   │   ├── Worker.js        # Web Worker (unused?)
-│   │   ├── theme.js         # Dark mode toggle (~88 lines)
-│   │   └── [legacy libs]    # jQuery, Knockout, etc.
 │   └── assets/              # Images & icons
 ├── public/
-│   └── scripts/             # Legacy scripts (copied for compatibility)
+│   └── scripts/             # Game scripts (single source of truth)
+│       ├── Game.js          # Core game logic (~2,140 lines)
+│       ├── Site.js          # UI interactions (~102 lines)
+│       ├── Worker.js        # Web Worker for game tick
+│       ├── theme.js         # Dark mode toggle
+│       ├── tabcontent.js    # Tab switching
+│       └── [vendor libs]    # jQuery, Knockout, Tipped, etc.
 ├── index.html               # Main game file (~1,000+ lines with templates)
 ├── vite.config.js           # Build configuration
-├── MODERNIZATION_PLAN.md    # Detailed modernization roadmap
+├── compose.yml              # Podman dev + prod services
+├── Containerfile            # Multi-stage production build
 └── package.json
 ```
 
@@ -124,12 +125,11 @@ Modern CSS with design tokens organized by concern:
 - **layout.css**: Page structure, containers, grids
 - **components/**: Buttons, tables, tabs, modals, cards, etc.
 
-**Dark Mode**: Implemented via `data-theme="dark"` attribute with CSS custom properties. Theme toggle in [src/scripts/theme.js](src/scripts/theme.js).
+**Dark Mode**: Implemented via `data-theme="dark"` attribute with CSS custom properties. Theme toggle in [public/scripts/theme.js](public/scripts/theme.js).
 
 **Path Aliases** (Vite):
 - `@` → `./src`
 - `@styles` → `./src/styles`
-- `@scripts` → `./src/scripts`
 - `@assets` → `./src/assets`
 
 ## Deployment
@@ -198,7 +198,7 @@ Auto-builds via `.github/workflows/docker-build-push.yml` on push to main/master
 ## Common Tasks
 
 ### Adding a New Critter Trait
-1. Add observable in `GameController` constructor ([Game.js](src/scripts/Game.js))
+1. Add observable in `GameController` constructor ([Game.js](public/scripts/Game.js))
 2. Add to breeding logic in relevant functions
 3. Add to UI templates in [index.html](index.html) with `data-bind`
 4. Update sorting arrays if needed (`this.sorts`, `this.armySorts`)
