@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: critter-mound
-  description: "Incremental browser game featuring critter breeding, worker management, combat, and prestige mechanics"
+  description: "Incremental browser game featuring critter breeding, worker management, and combat mechanics"
   tags:
     - javascript
     - knockout

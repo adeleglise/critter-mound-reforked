@@ -19,44 +19,36 @@ The workflow:
 
 **Live URL:** `https://adeleglise.github.io/critter-mound-reforked/`
 
-## Docker
+## Podman / Docker
 
-A Dockerfile is provided for containerized deployment using Nginx.
-
-```bash
-# Build
-docker build -t critter-mound .
-
-# Run
-docker run -d -p 8080:80 critter-mound
-```
-
-Auto-builds via `.github/workflows/docker-build-push.yml` on push to `main`/`master`.
+A multi-stage `Containerfile` is provided for containerized deployment using nginx.
 
 ```bash
-# Pull published image
-docker pull ghcr.io/adeleglise/critter-mound-reforked:main
-docker run -d -p 8080:80 ghcr.io/adeleglise/critter-mound-reforked:main
+# Build production image
+podman build -t critter-mound -f Containerfile .
+
+# Run production container
+podman run -d -p 8080:80 critter-mound
 ```
 
-## Local Development
+### Using Compose
 
 ```bash
-# Install dependencies
-npm install
+# Development with hot-reload (port 6007)
+podman compose up dev
 
-# Start dev server with HMR
-npm run dev
+# Production preview (port 8080)
+podman compose up prod
 
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+# Stop all services
+podman compose down
 ```
+
+See [Local Development](LOCAL_DEVELOPMENT.md) for full setup instructions.
 
 ## Environment Variables
 
 | Variable | Used By | Purpose |
 |----------|---------|---------|
 | `GITHUB_PAGES` | Vite build | Sets base path for GitHub Pages |
+| `CHOKIDAR_USEPOLLING` | Dev container | Enables file watching in containers |
