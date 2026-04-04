@@ -1,0 +1,98 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Switch to dark mode" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3]: 🌙
+    - text: Switch to dark mode
+  - generic [ref=e4]:
+    - generic [ref=e6]: Critter Mound
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "Royal Hatchery (/)" [ref=e9] [cursor=pointer]:
+          - /url: "#tabs-hatchery"
+          - text: Royal Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e10]:
+        - link "Heir Hatchery (/)" [ref=e11] [cursor=pointer]:
+          - /url: "#tabs-heirs"
+          - text: Heir Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e12]:
+        - link "Workers ()" [ref=e13] [cursor=pointer]:
+          - /url: "#tabs-production"
+          - text: Workers (
+          - text: )
+      - listitem [ref=e14]:
+        - link "Soldiers (/)" [ref=e15] [cursor=pointer]:
+          - /url: "#tabs-barracks"
+          - text: Soldiers (
+          - text: /
+          - text: )
+      - listitem [ref=e16]:
+        - link "Achievements (/)" [ref=e17] [cursor=pointer]:
+          - /url: "#tabs-achievements"
+          - text: Achievements (
+          - text: /
+          - text: )
+      - listitem [ref=e18]:
+        - link "How To Play" [ref=e19] [cursor=pointer]:
+          - /url: "#tabs-information"
+    - generic [ref=e22] [cursor=pointer]: The mound is empty
+    - table [ref=e25]:
+      - rowgroup [ref=e26]:
+        - row "Queen pause boost King pause boost" [ref=e27]:
+          - cell "Queen pause boost" [ref=e28]:
+            - table [ref=e29]:
+              - rowgroup [ref=e30]:
+                - row "Queen pause boost" [ref=e31]:
+                  - cell "Queen" [ref=e32]
+                  - cell "pause boost" [ref=e33]:
+                    - button "pause" [ref=e34] [cursor=pointer]
+                    - button "boost" [ref=e35] [cursor=pointer]
+                    - button [ref=e36] [cursor=pointer]
+          - cell "King pause boost" [ref=e37]:
+            - table [ref=e38]:
+              - rowgroup [ref=e39]:
+                - row "King pause boost" [ref=e40]:
+                  - cell "King" [ref=e41]
+                  - cell "pause boost" [ref=e42]:
+                    - button "pause" [ref=e43] [cursor=pointer]
+                    - button "boost" [ref=e44] [cursor=pointer]
+                    - button [ref=e45] [cursor=pointer]
+        - row "queen worker soldier sacrifice Hatchery / king worker soldier sacrifice Hatchery /" [ref=e46]:
+          - cell "queen worker soldier sacrifice Hatchery /" [ref=e47]:
+            - table [ref=e48]:
+              - rowgroup [ref=e49]:
+                - row "queen worker soldier sacrifice Hatchery /" [ref=e50]:
+                  - cell "queen worker soldier sacrifice Hatchery /" [ref=e51]:
+                    - generic [ref=e52]:
+                      - button "queen" [ref=e53] [cursor=pointer]
+                      - button "worker" [ref=e54] [cursor=pointer]
+                      - button "soldier" [ref=e55] [cursor=pointer]
+                      - button "sacrifice" [ref=e56] [cursor=pointer]
+                      - combobox [ref=e57] [cursor=pointer]
+                    - text: Hatchery
+                    - text: /
+              - rowgroup
+          - cell "king worker soldier sacrifice Hatchery /" [ref=e58]:
+            - table [ref=e59]:
+              - rowgroup [ref=e60]:
+                - row "king worker soldier sacrifice Hatchery /" [ref=e61]:
+                  - cell "king worker soldier sacrifice Hatchery /" [ref=e62]:
+                    - generic [ref=e63]:
+                      - button "king" [ref=e64] [cursor=pointer]
+                      - button "worker" [ref=e65] [cursor=pointer]
+                      - button "soldier" [ref=e66] [cursor=pointer]
+                      - button "sacrifice" [ref=e67] [cursor=pointer]
+                      - combobox [ref=e68] [cursor=pointer]
+                    - text: Hatchery
+                    - text: /
+              - rowgroup
+    - heading "Press Shift Key to see more options" [level=4] [ref=e69]:
+      - text: Press
+      - img "Shift Key" [ref=e70]
+      - text: to see more options
+```

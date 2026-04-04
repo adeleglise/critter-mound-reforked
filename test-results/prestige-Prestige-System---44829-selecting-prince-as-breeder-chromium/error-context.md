@@ -1,0 +1,97 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Switch to dark mode" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3]: 🌙
+    - text: Switch to dark mode
+  - generic [ref=e4]:
+    - generic [ref=e6]: Critter Mound
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "Royal Hatchery (/)" [ref=e9] [cursor=pointer]:
+          - /url: "#tabs-hatchery"
+          - text: Royal Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e10]:
+        - link "Heir Hatchery (/)" [ref=e11] [cursor=pointer]:
+          - /url: "#tabs-heirs"
+          - text: Heir Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e12]:
+        - link "Workers ()" [ref=e13] [cursor=pointer]:
+          - /url: "#tabs-production"
+          - text: Workers (
+          - text: )
+      - listitem [ref=e14]:
+        - link "Soldiers (/)" [ref=e15] [cursor=pointer]:
+          - /url: "#tabs-barracks"
+          - text: Soldiers (
+          - text: /
+          - text: )
+      - listitem [ref=e16]:
+        - link "Achievements (/)" [ref=e17] [cursor=pointer]:
+          - /url: "#tabs-achievements"
+          - text: Achievements (
+          - text: /
+          - text: )
+      - listitem [ref=e18]:
+        - link "How To Play" [ref=e19] [cursor=pointer]:
+          - /url: "#tabs-information"
+    - table [ref=e22]:
+      - rowgroup [ref=e23]:
+        - row "Queen pause boost King pause boost" [ref=e24]:
+          - cell "Queen pause boost" [ref=e25]:
+            - table [ref=e26]:
+              - rowgroup [ref=e27]:
+                - row "Queen pause boost" [ref=e28]:
+                  - cell "Queen" [ref=e29]
+                  - cell "pause boost" [ref=e30]:
+                    - button "pause" [ref=e31] [cursor=pointer]
+                    - button "boost" [ref=e32] [cursor=pointer]
+                    - button [ref=e33] [cursor=pointer]
+          - cell "King pause boost" [ref=e34]:
+            - table [ref=e35]:
+              - rowgroup [ref=e36]:
+                - row "King pause boost" [ref=e37]:
+                  - cell "King" [ref=e38]
+                  - cell "pause boost" [ref=e39]:
+                    - button "pause" [ref=e40] [cursor=pointer]
+                    - button "boost" [ref=e41] [cursor=pointer]
+                    - button [ref=e42] [cursor=pointer]
+        - row "queen worker soldier sacrifice Hatchery / king worker soldier sacrifice Hatchery /" [ref=e43]:
+          - cell "queen worker soldier sacrifice Hatchery /" [ref=e44]:
+            - table [ref=e45]:
+              - rowgroup [ref=e46]:
+                - row "queen worker soldier sacrifice Hatchery /" [ref=e47]:
+                  - cell "queen worker soldier sacrifice Hatchery /" [ref=e48]:
+                    - generic [ref=e49]:
+                      - button "queen" [ref=e50] [cursor=pointer]
+                      - button "worker" [ref=e51] [cursor=pointer]
+                      - button "soldier" [ref=e52] [cursor=pointer]
+                      - button "sacrifice" [ref=e53] [cursor=pointer]
+                      - combobox [ref=e54] [cursor=pointer]
+                    - text: Hatchery
+                    - text: /
+              - rowgroup
+          - cell "king worker soldier sacrifice Hatchery /" [ref=e55]:
+            - table [ref=e56]:
+              - rowgroup [ref=e57]:
+                - row "king worker soldier sacrifice Hatchery /" [ref=e58]:
+                  - cell "king worker soldier sacrifice Hatchery /" [ref=e59]:
+                    - generic [ref=e60]:
+                      - button "king" [ref=e61] [cursor=pointer]
+                      - button "worker" [ref=e62] [cursor=pointer]
+                      - button "soldier" [ref=e63] [cursor=pointer]
+                      - button "sacrifice" [ref=e64] [cursor=pointer]
+                      - combobox [ref=e65] [cursor=pointer]
+                    - text: Hatchery
+                    - text: /
+              - rowgroup
+    - heading "Press Shift Key to see more options" [level=4] [ref=e66]:
+      - text: Press
+      - img "Shift Key" [ref=e67]
+      - text: to see more options
+```

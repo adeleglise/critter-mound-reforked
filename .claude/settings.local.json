@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(cat:*)",
+      "Bash(npx playwright:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(git commit:*)",
+      "Bash(podman --version)",
+      "Bash(gh repo:*)",
+      "mcp__playwright__browser_navigate",
+      "Bash(agent-browser screenshot:*)",
+      "Bash(agent-browser errors:*)",
+      "Bash(agent-browser console:*)",
+      "Bash(podman-compose down:*)",
+      "Bash(agent-browser close:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

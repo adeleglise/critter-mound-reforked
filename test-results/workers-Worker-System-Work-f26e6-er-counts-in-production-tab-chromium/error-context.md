@@ -1,0 +1,126 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - button "Switch to dark mode" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3]: 🌙
+    - text: Switch to dark mode
+  - generic [ref=e4]:
+    - generic [ref=e6]: Critter Mound
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "Royal Hatchery (/)" [ref=e9] [cursor=pointer]:
+          - /url: "#tabs-hatchery"
+          - text: Royal Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e10]:
+        - link "Heir Hatchery (/)" [ref=e11] [cursor=pointer]:
+          - /url: "#tabs-heirs"
+          - text: Heir Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e12]:
+        - link "Workers ()" [active] [ref=e13] [cursor=pointer]:
+          - /url: "#tabs-production"
+          - text: Workers (
+          - text: )
+      - listitem [ref=e14]:
+        - link "Soldiers (/)" [ref=e15] [cursor=pointer]:
+          - /url: "#tabs-barracks"
+          - text: Soldiers (
+          - text: /
+          - text: )
+      - listitem [ref=e16]:
+        - link "Achievements (/)" [ref=e17] [cursor=pointer]:
+          - /url: "#tabs-achievements"
+          - text: Achievements (
+          - text: /
+          - text: )
+      - listitem [ref=e18]:
+        - link "How To Play" [ref=e19] [cursor=pointer]:
+          - /url: "#tabs-information"
+    - generic [ref=e22] [cursor=pointer]: The mound is empty
+    - table [ref=e25]:
+      - rowgroup [ref=e26]:
+        - row "Mined Dirt Carried Dirt Factory Dirt Produced Sod Factory Grass Carried Grass Farmed Grass" [ref=e27]:
+          - cell "Mined Dirt Carried Dirt Factory Dirt Produced Sod Factory Grass Carried Grass Farmed Grass" [ref=e28]:
+            - table [ref=e29]:
+              - rowgroup [ref=e30]:
+                - row [ref=e31]:
+                  - cell [ref=e32]
+                - row "Mined Dirt Carried Dirt Factory Dirt Produced Sod Factory Grass Carried Grass Farmed Grass" [ref=e33]:
+                  - cell "Mined Dirt" [ref=e34]
+                  - cell "Carried Dirt" [ref=e35]
+                  - cell "Factory Dirt" [ref=e36]
+                  - cell "Produced Sod" [ref=e37]
+                  - cell "Factory Grass" [ref=e38]
+                  - cell "Carried Grass" [ref=e39]
+                  - cell "Farmed Grass" [ref=e40]
+                - row [ref=e41]:
+                  - cell [ref=e42]
+                  - cell [ref=e43]
+                  - cell [ref=e44]
+                  - cell [ref=e45]
+                  - cell [ref=e46]
+                  - cell [ref=e47]
+                  - cell [ref=e48]
+        - row "Mine / ( dirt per second) upgrade sacrifice Farm / ( grass per second) upgrade sacrifice" [ref=e49]:
+          - cell "Mine / ( dirt per second) upgrade sacrifice" [ref=e50]:
+            - table [ref=e51]:
+              - rowgroup [ref=e52]:
+                - row "Mine / ( dirt per second) upgrade sacrifice" [ref=e53]:
+                  - cell "Mine / ( dirt per second)" [ref=e54]:
+                    - text: Mine
+                    - text: /
+                    - text: (
+                    - text: dirt per second)
+                  - cell "upgrade sacrifice" [ref=e55]:
+                    - button "upgrade" [ref=e56] [cursor=pointer]
+                    - button "sacrifice" [ref=e57] [cursor=pointer]
+              - rowgroup
+          - cell "Farm / ( grass per second) upgrade sacrifice" [ref=e58]:
+            - table [ref=e59]:
+              - rowgroup [ref=e60]:
+                - row "Farm / ( grass per second) upgrade sacrifice" [ref=e61]:
+                  - cell "Farm / ( grass per second)" [ref=e62]:
+                    - text: Farm
+                    - text: /
+                    - text: (
+                    - text: grass per second)
+                  - cell "upgrade sacrifice" [ref=e63]:
+                    - button "upgrade" [ref=e64] [cursor=pointer]
+                    - button "sacrifice" [ref=e65] [cursor=pointer]
+              - rowgroup
+        - row "Carriers / ( carry per second) upgrade sacrifice Factory / ( sod per second) upgrade sacrifice" [ref=e66]:
+          - cell "Carriers / ( carry per second) upgrade sacrifice" [ref=e67]:
+            - table [ref=e68]:
+              - rowgroup [ref=e69]:
+                - row "Carriers / ( carry per second) upgrade sacrifice" [ref=e70]:
+                  - cell "Carriers / ( carry per second)" [ref=e71]:
+                    - text: Carriers
+                    - text: /
+                    - text: (
+                    - text: carry per second)
+                  - cell "upgrade sacrifice" [ref=e72]:
+                    - button "upgrade" [ref=e73] [cursor=pointer]
+                    - button "sacrifice" [ref=e74] [cursor=pointer]
+              - rowgroup
+          - cell "Factory / ( sod per second) upgrade sacrifice" [ref=e75]:
+            - table [ref=e76]:
+              - rowgroup [ref=e77]:
+                - row "Factory / ( sod per second) upgrade sacrifice" [ref=e78]:
+                  - cell "Factory / ( sod per second)" [ref=e79]:
+                    - text: Factory
+                    - text: /
+                    - text: (
+                    - text: sod per second)
+                  - cell "upgrade sacrifice" [ref=e80]:
+                    - button "upgrade" [ref=e81] [cursor=pointer]
+                    - button "sacrifice" [ref=e82] [cursor=pointer]
+              - rowgroup
+    - heading "Press Shift Key to see more options" [level=4] [ref=e83]:
+      - text: Press
+      - img "Shift Key" [ref=e84]
+      - text: to see more options
+```

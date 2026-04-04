@@ -1,0 +1,211 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - button "Switch to dark mode" [ref=e2] [cursor=pointer]:
+    - generic [ref=e3]: 🌙
+    - text: Switch to dark mode
+  - generic [ref=e4]:
+    - generic [ref=e6]: Critter Mound
+    - list [ref=e7]:
+      - listitem [ref=e8]:
+        - link "Royal Hatchery (/)" [ref=e9] [cursor=pointer]:
+          - /url: "#tabs-hatchery"
+          - text: Royal Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e10]:
+        - link "Heir Hatchery (/)" [ref=e11] [cursor=pointer]:
+          - /url: "#tabs-heirs"
+          - text: Heir Hatchery (
+          - text: /
+          - text: )
+      - listitem [ref=e12]:
+        - link "Workers ()" [ref=e13] [cursor=pointer]:
+          - /url: "#tabs-production"
+          - text: Workers (
+          - text: )
+      - listitem [ref=e14]:
+        - link "Soldiers (/)" [ref=e15] [cursor=pointer]:
+          - /url: "#tabs-barracks"
+          - text: Soldiers (
+          - text: /
+          - text: )
+      - listitem [ref=e16]:
+        - link "Achievements (/)" [ref=e17] [cursor=pointer]:
+          - /url: "#tabs-achievements"
+          - text: Achievements (
+          - text: /
+          - text: )
+      - listitem [ref=e18]:
+        - link "How To Play" [ref=e19] [cursor=pointer]:
+          - /url: "#tabs-information"
+    - table [ref=e22]:
+      - rowgroup [ref=e23]:
+        - row [ref=e24]:
+          - cell [ref=e25]:
+            - heading "How To Play" [level=4] [ref=e26]
+            - paragraph [ref=e27]:
+              - strong [ref=e28]:
+                - text: Questions & Discussion at
+                - link "www.reddit.com/r/crittermound" [ref=e29] [cursor=pointer]:
+                  - /url: http://www.reddit.com/r/crittermound
+            - paragraph [ref=e30]:
+              - strong [ref=e31]: General
+              - text: Breed new critters, breed stronger critters, destroy your enemies.
+            - paragraph [ref=e32]:
+              - strong [ref=e33]: Quick Guide
+            - list [ref=e34]:
+              - listitem [ref=e35]: Wait for new critters in the hatchery
+              - listitem [ref=e36]: If they are mostly green, use them as King and Queen
+              - listitem [ref=e37]: Put red critters to work as a workers
+              - listitem [ref=e38]: Put 1 critter to work as a soilder
+              - listitem [ref=e39]: Start a war
+              - listitem [ref=e40]: Repeat 1 and 2 until you are strong enough to win the war
+            - paragraph
+            - paragraph [ref=e41]:
+              - strong [ref=e42]: Hatchery
+              - text: The hatcheries are where the King and Queen produce new offspring. Any egg in the hatchery can become anything, the new King, a Mine Worker, or Military. Once assigned a job it can not be changed. You can tell a building how to prioritize with the dropdown. It won't change what is produced, just who is kicked out when there isn't enough space (the eggs are just tossed out of the mound). Boost causes an instant mating, and recharges over time.
+            - paragraph [ref=e43]:
+              - strong [ref=e44]: Traits and Mutations
+              - text: The traits vary during each breeding, and are used in various calculations. In general, a trait varies within it's parents range. If the mother is 10 and the father is 15, then the offspring will be between 9 and 16. The variance increases as the trait increases. Randomly, some critters will mutate as they are improved. Mutation can increase a traits value with a bonus. Mutations breed the same as traits. You can also find new mutations by going to war.
+            - paragraph [ref=e45]:
+              - strong [ref=e46]: Vitality
+              - text: Vitality controls health, and how well a critter produces sod in the factory
+            - paragraph [ref=e47]:
+              - strong [ref=e48]: Strength
+              - text: Strength gives 50% of it's value as a bonus to bite during battle, and as a worker, controls how much a critter can carry.
+            - paragraph [ref=e49]:
+              - strong [ref=e50]: Agility
+              - text: Agility controls how fast a critter breeds, works, and fighting order. It also provides 50% of it's value as a bonus to string during battle.
+            - paragraph [ref=e51]:
+              - strong [ref=e52]: Bite
+              - text: Bite is both an attack and defense, it's also how a critter farms grass.
+            - paragraph [ref=e53]:
+              - strong [ref=e54]: Sting
+              - text: Sting is both an attack and defense, it's also how a critter mines dirt.
+            - paragraph [ref=e55]:
+              - strong [ref=e56]: Bite vs Sting
+              - text: These two traits are opposed to eachother. They are both an attack and they are both a defense. When each critter attacks it will choose one or the other at random, and it's opponet will counter the opposite. Bite attacks Sting, Sting defends Bite, ect.
+            - paragraph [ref=e57]:
+              - strong [ref=e58]: Stats
+              - text: Stats are calculations made using trait values. They are what matter in the game. Health is 15 * Vitality for example.
+            - strong [ref=e59]: Mutation Expression
+            - table [ref=e60]:
+              - rowgroup [ref=e61]:
+                - row "parents none recessive expressed" [ref=e62]:
+                  - cell "parents" [ref=e63]
+                  - cell "none" [ref=e64]
+                  - cell "recessive" [ref=e65]
+                  - cell "expressed" [ref=e66]
+                - row "None / None 99% 1% 0%" [ref=e67]:
+                  - cell "None / None" [ref=e68]
+                  - cell "99%" [ref=e69]
+                  - cell "1%" [ref=e70]
+                  - cell "0%" [ref=e71]
+                - row "None / Recessive 50% 50% 0%" [ref=e72]:
+                  - cell "None / Recessive" [ref=e73]
+                  - cell "50%" [ref=e74]
+                  - cell "50%" [ref=e75]
+                  - cell "0%" [ref=e76]
+                - row "None / Expressed 0% 100% 0%" [ref=e77]:
+                  - cell "None / Expressed" [ref=e78]
+                  - cell "0%" [ref=e79]
+                  - cell "100%" [ref=e80]
+                  - cell "0%" [ref=e81]
+                - row "Recessive / Recessive 25% 50% 25%" [ref=e82]:
+                  - cell "Recessive / Recessive" [ref=e83]
+                  - cell "25%" [ref=e84]
+                  - cell "50%" [ref=e85]
+                  - cell "25%" [ref=e86]
+                - row "Recessive / Expressed 0% 50% 50%" [ref=e87]:
+                  - cell "Recessive / Expressed" [ref=e88]
+                  - cell "0%" [ref=e89]
+                  - cell "50%" [ref=e90]
+                  - cell "50%" [ref=e91]
+                - row "Expressed / Expressed 0% 0% 100%" [ref=e92]:
+                  - cell "Expressed / Expressed" [ref=e93]
+                  - cell "0%" [ref=e94]
+                  - cell "0%" [ref=e95]
+                  - cell "100%" [ref=e96]
+            - paragraph [ref=e97]:
+              - strong [ref=e98]: Workers
+              - text: When a critter is promoted to a worker, he is assigned to the job where he is currently needed most, that he can help in. If the mine needs help the most, that is where he will go if he can improve the mines production. If he can't help at the bottle neck, he goes where he can help. If he can't help he... leaves the colony and goes to... somewhere else. If you have 100 strength and a 20 second speed, you'll mine 100 dirt every 20 seconds.
+            - paragraph [ref=e99]:
+              - strong [ref=e100]: Barracks
+              - text: The barracks hosts your army. When you are at war, they defend your mound, and search the surrounding area for enemies to gain territory. You can leave a war at anytime, but your map will be lost. Because the ancient map makers... its just too much data to store, alright. So ending a war means you'll have to start over if you revisit.
+            - paragraph [ref=e101]:
+              - strong [ref=e102]: Soldier Ranks
+              - text: The three highest ranked soldiers are special. They become your General, your Scout, and your Medic in that order. If one is killed, or a higher ranking officer, they adjust to new rolls. Soldiers below this still can XP and will be promoted if needed. All soldiers get a critical change bonus equal to their level (Level 10 = 10% chance).
+            - paragraph [ref=e103]:
+              - strong [ref=e104]: Heir Hatchery
+              - text: You have become so rich, that you can now help a new mound get off it's feet. However, they don't yet have their own home. They'll need sod to create offspring. (Sod = Score) You can use the
+              - strong [ref=e105]: shift key
+              - text: to cross promote between the royals and their heirs.
+            - paragraph [ref=e106]:
+              - strong [ref=e107]: The shift key changes the function of some of the buttons, and it also lets you lock a critter so it won't be pushed from a mound.
+          - cell [ref=e108]:
+            - button "reset game / delete save" [ref=e109] [cursor=pointer]
+            - button "save game" [active] [ref=e110] [cursor=pointer]
+            - text: "|"
+            - button "export game" [ref=e111] [cursor=pointer]
+            - button "import game" [ref=e112] [cursor=pointer]
+            - text: "Battle Speed:"
+            - text: seconds
+            - slider [ref=e113]: "31"
+            - heading "Release Notes" [level=4] [ref=e114]
+            - paragraph [ref=e115]:
+              - strong [ref=e116]: 1.1.4 - Sep 9th, 2014
+            - list [ref=e117]:
+              - listitem [ref=e118]: Fixed Heir Mound cost
+              - listitem [ref=e119]: Forts show up on map always
+              - listitem [ref=e120]: Soldiers can level up to 25
+              - listitem [ref=e121]: Bug Fixes
+            - strong [ref=e122]: 1.1.3 - Sep 7th, 2014
+            - list [ref=e123]:
+              - listitem [ref=e124]: Defeating the enemy mound provides a bonus to hunting and exploring
+              - listitem [ref=e125]: Added base and bonus filters (total base or total bonus % across all traits)
+              - listitem [ref=e126]: Bug Fixes
+            - strong [ref=e127]: 1.1.2 - Sep 6th, 2014
+            - list [ref=e128]:
+              - listitem [ref=e129]: Locked maxed out traits and mutations, they won't lose value after reaching highest possible point
+              - listitem [ref=e130]: Sort order of the army determines promotions, not level.
+              - listitem [ref=e131]: Bug Fixes
+            - strong [ref=e132]: 1.1.1 - Sep 5th, 2014
+            - list [ref=e133]:
+              - listitem [ref=e134]: New Score Function
+              - listitem [ref=e135]: Bug Fixes
+            - strong [ref=e136]: 1.1 - Sep 4th, 2014
+            - list [ref=e137]:
+              - listitem [ref=e138]: Army ranks and jobs.
+              - listitem [ref=e139]: Added Forts
+              - listitem [ref=e140]: Fixed bug that let idle players gain multiple mutations
+              - listitem [ref=e141]: Added Export / Import
+            - strong [ref=e142]: 1.0 - Aug 30th, 2014
+            - list [ref=e143]:
+              - listitem [ref=e144]: Production completely overhauled
+              - listitem [ref=e145]: Added requirements to obtain new mutations. They'll need to be improved to become eligible to mutate again. So you can't just ignore existing mutations and get more.
+              - listitem [ref=e146]: Shift key allows "all" commands for the mounds such as "Recycle All"
+              - listitem [ref=e147]: Changed some multipliers on enemy types. Again, it'll be harder.
+              - listitem [ref=e148]: Speed changes related to Vitality have changed. It'll increase faster at lower levels.
+            - strong [ref=e149]: 0.4 - Aug 23th, 2014
+            - list [ref=e150]:
+              - listitem [ref=e151]: Fixed Wars. They now save and unlock properly, so you can find everything. New item type increases max boosts.
+              - listitem [ref=e152]: Critters can die in battle if their health reaches zero
+              - listitem [ref=e153]: The enemy no longer attacks you. Your army when not fighting, sends a scout to unlocked tiles to take a look.
+              - listitem [ref=e154]: Shift click locks a critter so it won't sort out of the hatchery
+            - strong [ref=e155]: 0.3 - Aug 19th, 2014
+            - list [ref=e156]:
+              - listitem [ref=e157]: Added Wars. While at war, but enemy still attacks, but never with an ememy stronger than you haven't already defeated. There are now new genes, mines, and artifacts to discover.
+              - listitem [ref=e158]: Added Achievements
+            - strong [ref=e159]: 0.2 - Aug 12th, 2014
+            - list [ref=e160]:
+              - listitem [ref=e161]: Got the barracks working although it may need to be balanced. Enemy strength is based off your current generation number, so the battles can be easy or hard.
+              - listitem [ref=e162]: Move commands now are group selectable, and the army can be killed to provide fine tuned replacement
+              - listitem [ref=e163]: Added click to boost buttons on the timers
+            - paragraph
+    - heading "Press Shift Key to see more options" [level=4] [ref=e164]:
+      - text: Press
+      - img "Shift Key" [ref=e165]
+      - text: to see more options
+```

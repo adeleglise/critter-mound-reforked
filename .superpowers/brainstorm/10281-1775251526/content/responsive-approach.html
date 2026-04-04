@@ -1,0 +1,40 @@
+<h2>Responsive Layout Approach</h2>
+<p class="subtitle">The current game uses fixed-width tables side by side (Queen + King). How should it adapt to smaller screens?</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Stack on Mobile</h3>
+      <p>Queen and King tables stack vertically on screens &lt; 768px. Tabs stay horizontal but scroll. Worker/Army tables also stack. Minimal CSS changes using media queries on the existing layout.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Least disruption to existing layout</li><li>All content visible, just reordered</li><li>Works with current table-based structure</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Long scrolling on mobile</li><li>Tables still wide on small screens</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Tab-Based Mobile View</h3>
+      <p>On mobile, add sub-tabs: "Queen" / "King" instead of showing both side by side. Worker types also get sub-tabs. Reduces scroll depth significantly.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Much less scrolling</li><li>Focused view per section</li><li>Better mobile UX</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More JS logic for sub-tab switching</li><li>Harder to compare Queen vs King at a glance</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Responsive Tables with Horizontal Scroll</h3>
+      <p>Keep the current layout but wrap each table in a horizontal scroll container on mobile. Stack Queen/King vertically. Tables keep full width but are swipeable.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>No data hidden or reorganized</li><li>Pure CSS solution</li><li>Familiar pattern for data-heavy apps</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Horizontal scroll can feel clunky</li><li>Not the most polished mobile experience</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
