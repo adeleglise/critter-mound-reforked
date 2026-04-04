@@ -154,3 +154,14 @@ p:last-child {
 .mono {
   font-family: var(--font-mono);
 }
+
+/* Tabular numbers for aligned stat columns */
+table.critter td {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+table.critter .trait {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}

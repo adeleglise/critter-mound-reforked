@@ -34,7 +34,7 @@ table.critter th {
   text-align: center;
   font-weight: var(--font-bold);
   border: var(--border-width) solid var(--color-border);
-  padding: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   color: var(--color-text);
 }
 
@@ -43,7 +43,7 @@ table.critter td {
   vertical-align: middle;
   font-size: var(--text-xs);
   border: var(--border-width) solid var(--color-border);
-  padding: var(--space-2);
+  padding: var(--space-2) var(--space-3);
   white-space: nowrap;
   transition: background-color var(--transition-fast);
 }

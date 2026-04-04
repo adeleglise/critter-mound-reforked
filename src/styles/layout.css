@@ -127,6 +127,8 @@ ul.tabs li.selected a:hover {
   color: var(--color-text);
   position: relative;
   top: 1px;
+  font-weight: var(--font-bold);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ========================================
