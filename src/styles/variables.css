@@ -33,22 +33,51 @@
   --color-text-disabled: #9ca3af;
 
   /* Game-Specific Colors */
-  --color-female: #ffc0c0;
-  --color-female-dark: #ff9090;
-  --color-male: #afd3ff;
-  --color-male-dark: #7fb3ff;
-  --color-mine: #e1ceaf;
-  --color-mine-dark: #d1be9f;
-  --color-farm: #cde1af;
-  --color-farm-dark: #bdd19f;
-  --color-carrier: #ddac99;
-  --color-carrier-dark: #cd9c89;
-  --color-factory: #b4afe1;
-  --color-factory-dark: #a49fd1;
-  --color-army: #333333;
-  --color-army-hover: #444444;
-  --color-enemy: #600000;
-  --color-enemy-hover: #800000;
+  --color-female: #f5d0d0;
+  --color-female-dark: #e8a8a8;
+  --color-female-light: #faf0f0;
+  --color-male: #cce0f5;
+  --color-male-dark: #a3c4e8;
+  --color-male-light: #eef5fc;
+  --color-mine: #e8dcc8;
+  --color-mine-dark: #d4c8a8;
+  --color-mine-highlight: #f5f0e5;
+  --color-farm: #d4e8c8;
+  --color-farm-dark: #b8d4a8;
+  --color-farm-highlight: #eef5e5;
+  --color-carrier: #e8ccc0;
+  --color-carrier-dark: #d4a898;
+  --color-carrier-highlight: #f5e8e0;
+  --color-factory: #ccc8e8;
+  --color-factory-dark: #a8a0d4;
+  --color-factory-highlight: #eeedf5;
+  --color-army: #3d4a3d;
+  --color-army-hover: #4d5a4d;
+  --color-enemy: #6b1a1a;
+  --color-enemy-hover: #8b2a2a;
+
+  /* Button Colors */
+  --color-recycle: #2d6b2d;
+  --color-recycle-hover: #1d4d1d;
+  --color-upgrade: #c8e8c8;
+  --color-upgrade-hover: #a8d4a8;
+  --color-achievement: #1a1a6b;
+  --color-achievement-hover: #2a2a8b;
+
+  /* Battle Colors */
+  --color-selected: #d0f5d4;
+  --color-newest: #f5ecd0;
+  --color-attacker: #d0f5d4;
+  --color-attacker-highlight: #a8e8b0;
+  --color-defender: #f5e0e0;
+  --color-defender-highlight: #e8c0c0;
+
+  /* Worker Health Bar Colors */
+  --color-health-carrier: #833111;
+  --color-health-mine: #5c4e40;
+  --color-health-farm: #607049;
+  --color-health-factory: #575170;
+  --color-health-defender: #8b0000;
 
   /* Health/Progress Colors */
   --color-health: #10b981;
@@ -197,23 +226,45 @@
   --color-text-secondary: #cbd5e1;
   --color-text-disabled: #64748b;
 
-  /* Game-Specific Colors - Adjusted for dark mode */
-  --color-female: #ff9090;
-  --color-female-dark: #ff6060;
-  --color-male: #7fb3ff;
-  --color-male-dark: #4f93ff;
-  --color-mine: #d1be9f;
-  --color-mine-dark: #c1ae8f;
-  --color-farm: #bdd19f;
-  --color-farm-dark: #adc18f;
-  --color-carrier: #cd9c89;
-  --color-carrier-dark: #bd8c79;
-  --color-factory: #a49fd1;
-  --color-factory-dark: #948fc1;
-  --color-army: #4a5568;
-  --color-army-hover: #5a6578;
-  --color-enemy: #991b1b;
-  --color-enemy-hover: #b91c1c;
+  /* Game-Specific Colors - Dark mode */
+  --color-female: #8b4a4a;
+  --color-female-dark: #6b3a3a;
+  --color-female-light: #3d2828;
+  --color-male: #4a6a8b;
+  --color-male-dark: #3a5a6b;
+  --color-male-light: #28343d;
+  --color-mine: #6b5a40;
+  --color-mine-dark: #5a4a30;
+  --color-mine-highlight: #3d3428;
+  --color-farm: #4a6b40;
+  --color-farm-dark: #3a5a30;
+  --color-farm-highlight: #283d28;
+  --color-carrier: #6b4a3a;
+  --color-carrier-dark: #5a3a2a;
+  --color-carrier-highlight: #3d2820;
+  --color-factory: #4a4a6b;
+  --color-factory-dark: #3a3a5a;
+  --color-factory-highlight: #28283d;
+  --color-army: #4a5a4a;
+  --color-army-hover: #5a6a5a;
+  --color-enemy: #8b2a2a;
+  --color-enemy-hover: #ab3a3a;
+
+  /* Button Colors - Dark mode */
+  --color-recycle: #3a8b3a;
+  --color-recycle-hover: #2a6b2a;
+  --color-upgrade: #3a6b3a;
+  --color-upgrade-hover: #2a5a2a;
+  --color-achievement: #3a3a8b;
+  --color-achievement-hover: #4a4aab;
+
+  /* Battle Colors - Dark mode */
+  --color-selected: #2a4a2c;
+  --color-newest: #4a4028;
+  --color-attacker: #2a4a2c;
+  --color-attacker-highlight: #3a6a3e;
+  --color-defender: #4a2828;
+  --color-defender-highlight: #6a3838;
 
   /* Map Colors - Adjusted for dark mode */
   --color-map-fog: #334155;

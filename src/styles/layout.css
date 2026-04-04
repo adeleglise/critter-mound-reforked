@@ -115,7 +115,7 @@ ul.tabs li.army.battle a:hover {
 
 ul.tabs li.achievement a,
 ul.tabs li.achievement a:hover {
-  background-color: #00008b;
+  background-color: var(--color-achievement);
   color: white;
 }
 

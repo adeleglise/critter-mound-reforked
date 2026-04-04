@@ -111,22 +111,22 @@ button.army.battle:hover:not(:disabled) {
 }
 
 button.recycle {
-  background-color: #006400;
-  border-color: #004d00;
+  background-color: var(--color-recycle);
+  border-color: var(--color-recycle-hover);
   color: white;
 }
 
 button.recycle:hover:not(:disabled) {
-  background-color: #004d00;
+  background-color: var(--color-recycle-hover);
 }
 
 button.upgrade {
-  background-color: #bfebbf;
-  border-color: #9fdb9f;
+  background-color: var(--color-upgrade);
+  border-color: var(--color-upgrade-hover);
 }
 
 button.upgrade:hover:not(:disabled) {
-  background-color: #9fdb9f;
+  background-color: var(--color-upgrade-hover);
 }
 
 /* ========================================

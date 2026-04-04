@@ -28,7 +28,7 @@ table.critter {
 }
 
 table.critter th {
-  background-color: #f3ce8b;
+  background-color: var(--color-surface);
   font-variant: small-caps;
   font-size: var(--text-base);
   text-align: center;
@@ -75,7 +75,7 @@ table.critter tr.alt {
 }
 
 table.critter tr.newest {
-  background-color: #f8eed0 !important;
+  background-color: var(--color-newest) !important;
 }
 
 table.critter tr.newest td.noborder {
@@ -83,23 +83,23 @@ table.critter tr.newest td.noborder {
 }
 
 table.critter tr.selected {
-  background-color: #daf8dc !important;
+  background-color: var(--color-selected) !important;
 }
 
 table.critter tr.defender {
-  background-color: #fee;
+  background-color: var(--color-defender);
 }
 
 table.critter tr.defender .defendTrait {
-  background-color: #e6bfbf;
+  background-color: var(--color-defender-highlight);
 }
 
 table.critter tr.attacker {
-  background-color: #daf8dc;
+  background-color: var(--color-attacker);
 }
 
 table.critter tr.attacker .attackTrait {
-  background-color: #abebb0;
+  background-color: var(--color-attacker-highlight);
 }
 
 table.critter tr.dead {
@@ -140,7 +140,7 @@ table.critter tr.health.dead td {
 }
 
 table.critter tr.defenderHealth div {
-  background-color: #8b0000 !important;
+  background-color: var(--color-health-defender) !important;
 }
 
 /* Hide health bars on hatchery tables */
@@ -176,11 +176,11 @@ table.critter.carrier th {
 }
 
 table.critter.carrier td.health div {
-  background-color: #833111 !important;
+  background-color: var(--color-health-carrier) !important;
 }
 
 table.critter.carrier td.carry {
-  background-color: #f8e0d5 !important;
+  background-color: var(--color-carrier-highlight) !important;
 }
 
 /* Mine */
@@ -189,11 +189,11 @@ table.critter.mine th {
 }
 
 table.critter.mine td.health div {
-  background-color: #5c4e40 !important;
+  background-color: var(--color-health-mine) !important;
 }
 
 table.critter.mine td.mine {
-  background-color: #eae1d1 !important;
+  background-color: var(--color-mine-highlight) !important;
 }
 
 /* Farm */
@@ -202,11 +202,11 @@ table.critter.farm th {
 }
 
 table.critter.farm td.health div {
-  background-color: #607049 !important;
+  background-color: var(--color-health-farm) !important;
 }
 
 table.critter.farm td.farm {
-  background-color: #e7eedc !important;
+  background-color: var(--color-farm-highlight) !important;
 }
 
 /* Factory */
@@ -215,11 +215,11 @@ table.critter.factory th {
 }
 
 table.critter.factory td.health div {
-  background-color: #575170 !important;
+  background-color: var(--color-health-factory) !important;
 }
 
 table.critter.factory td.factory {
-  background-color: #e3e2f2 !important;
+  background-color: var(--color-factory-highlight) !important;
 }
 
 /* Army */
