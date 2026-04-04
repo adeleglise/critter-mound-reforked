@@ -322,10 +322,10 @@ EnemyArmySize            = armySizeBase + floor(danger/5)
 
 ---
 
-## 6. Unintegrated Systems
+## 6. Removed Systems
 
-The following systems are defined in the code but **not yet connected** to the game loop:
+The following systems were previously defined in the code but have been removed during the Phase 2 cleanup. They are available in git history (commit `950b6bd` and earlier) if needed for future development:
 
-- **PrestigeSystem:** Prestige points = `floor(sqrt(generations x achievements))`. Each point gives +10% bonus multiplier. Reset preserves max boosts and achievements.
-- **EventSystem:** Two events -- Seasonal Swarm (2x bonus, 24h) and Mutation Surge (+50 mutation chance, 12h). Not triggered by any game logic.
-- **AutoAssignWorkers:** Automatically assigns workers based on production bottlenecks. UI toggle exists in code but is not rendered.
+- **PrestigeSystem:** Reset-based progression with prestige points.
+- **EventSystem:** Timed bonus events (Seasonal Swarm, Mutation Surge).
+- **AutoAssignWorkers:** Automatic worker assignment based on bottlenecks.
