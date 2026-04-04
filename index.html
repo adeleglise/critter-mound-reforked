@@ -53,6 +53,11 @@
 
         <div class="tabcontents">
             <div id="tabs-hatchery" class="tab" style="display:none">
+                <!-- Mobile sub-tabs for Queen/King switching -->
+                <div class="mobile-subtabs" id="hatchery-subtabs">
+                    <button class="queen-tab active" onclick="mobileSubTab('hatchery', 'queen')">Queen</button>
+                    <button class="king-tab" onclick="mobileSubTab('hatchery', 'king')">King</button>
+                </div>
                 <table cellspacing="10">
                     <tr>
                         <td style="vertical-align: top; width: 50%">

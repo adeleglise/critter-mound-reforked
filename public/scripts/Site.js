@@ -101,3 +101,36 @@ function Import() {
     game.Load($("#txtImport").val());
     $("#txtImport").val("");
 }
+
+function mobileSubTab(section, tab) {
+    if (window.innerWidth >= 768) return;
+
+    var container = document.getElementById('tabs-' + section);
+    if (!container) return;
+
+    var cells = container.querySelectorAll(':scope > table > tbody > tr > td');
+    var buttons = container.querySelectorAll('.mobile-subtabs button');
+
+    buttons.forEach(function(btn) { btn.classList.remove('active'); });
+
+    if (tab === 'queen') {
+        if (cells[0]) cells[0].style.display = 'block';
+        if (cells[1]) cells[1].style.display = 'none';
+        buttons[0].classList.add('active');
+    } else {
+        if (cells[0]) cells[0].style.display = 'none';
+        if (cells[1]) cells[1].style.display = 'block';
+        buttons[1].classList.add('active');
+    }
+}
+
+window.addEventListener('resize', function() {
+    var subtabs = document.querySelectorAll('.mobile-subtabs');
+    subtabs.forEach(function(el) {
+        if (window.innerWidth >= 768) {
+            var container = el.parentElement;
+            var cells = container.querySelectorAll(':scope > table > tbody > tr > td');
+            cells.forEach(function(cell) { cell.style.display = ''; });
+        }
+    });
+});

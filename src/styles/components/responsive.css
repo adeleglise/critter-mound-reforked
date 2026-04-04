@@ -1,0 +1,135 @@
+/**
+ * Responsive Layout
+ * Mobile-first responsive rules for < 768px
+ */
+
+@media (max-width: 767px) {
+  /* Scrollable main tabs */
+  ul.tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: var(--space-1);
+    padding-bottom: var(--space-2);
+  }
+
+  ul.tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  ul.tabs li {
+    flex: 0 0 auto;
+  }
+
+  ul.tabs li a {
+    white-space: nowrap;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+  }
+
+  /* Queen/King sub-tabs */
+  .mobile-subtabs {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+  }
+
+  .mobile-subtabs button {
+    flex: 1;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    background: var(--color-surface);
+    cursor: pointer;
+  }
+
+  .mobile-subtabs button.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  .mobile-subtabs button.queen-tab.active {
+    background: var(--color-female-dark);
+    border-color: var(--color-female-dark);
+    color: var(--color-text);
+  }
+
+  .mobile-subtabs button.king-tab.active {
+    background: var(--color-male-dark);
+    border-color: var(--color-male-dark);
+    color: var(--color-text);
+  }
+
+  /* Stack Queen and King tables */
+  #tabs-hatchery > table > tbody > tr {
+    display: block;
+  }
+
+  #tabs-hatchery > table > tbody > tr > td {
+    display: block;
+    width: 100% !important;
+    padding: 0;
+    margin-bottom: var(--space-3);
+  }
+
+  #tabs-heirs > table > tbody > tr {
+    display: block;
+  }
+
+  #tabs-heirs > table > tbody > tr > td {
+    display: block;
+    width: 100% !important;
+    padding: 0;
+    margin-bottom: var(--space-3);
+  }
+
+  /* Touch-friendly targets */
+  button {
+    min-height: 44px;
+  }
+
+  select {
+    min-height: 44px;
+  }
+
+  /* Table adjustments */
+  table.critter td {
+    font-size: 11px;
+    padding: var(--space-1) var(--space-2);
+  }
+
+  table.critter th {
+    font-size: var(--text-xs);
+    padding: var(--space-1) var(--space-2);
+  }
+
+  /* Battle map scaling */
+  table.map {
+    font-size: 10px;
+  }
+
+  table.map td {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .title {
+    font-size: var(--text-lg);
+  }
+
+  #tabs-production table {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Desktop: hide mobile-only elements */
+@media (min-width: 768px) {
+  .mobile-subtabs {
+    display: none;
+  }
+}
